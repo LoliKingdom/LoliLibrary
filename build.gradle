@@ -73,11 +73,12 @@ dependencies {
     compileOnly ("net.tslat.aoa3:aoa3:3.3") {
         transitive = false
     }
-    runtime files("./libs/AoA3-3.3.6.jar")
+    runtime files("./libs/AoA3-3.3.6.jar") // TODO: needed? ./libs jars gets loaded automatically...
      */
 	
 	// deobfCompile fileTree(include: ["*.jar"], dir: "libs")
     deobfCompile "baubles:Baubles:1.12:1.5.2"
+    deobfCompile "curse.maven:astral-sorcery:3044416"
     deobfCompile "curse.maven:grimoire-of-gaia:2891787"
     deobfCompile "curse.maven:athenaeum:3063275"
     deobfCompile "curse.maven:dropt:2957599"

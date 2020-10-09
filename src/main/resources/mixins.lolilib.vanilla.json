@@ -1,0 +1,13 @@
+{
+  "package": "zone.rong.lolilib.vanilla.mixin",
+  "refmap": "mixins.lolilib.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.6",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BlockHopperMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
