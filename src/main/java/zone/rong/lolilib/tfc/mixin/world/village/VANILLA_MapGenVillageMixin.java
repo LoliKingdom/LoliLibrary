@@ -11,12 +11,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import zone.rong.lolilib.tfc.TFCMain;
 
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Mixin(MapGenVillage.class)
 public class VANILLA_MapGenVillageMixin {
 
     static {
-        MapGenVillage.VILLAGE_SPAWN_BIOMES = BiomesTFC.getWorldGenBiomes();
+        MapGenVillage.VILLAGE_SPAWN_BIOMES = BiomesTFC.getWorldGenBiomes().stream().filter(b -> !BiomesTFC.isOceanicBiome(b)).collect(Collectors.toList());
     }
 
     @Mixin(MapGenVillage.Start.class)
