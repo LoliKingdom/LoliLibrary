@@ -1,0 +1,23 @@
+{
+  "package": "zone.rong.lolilib.tfc.mixin",
+  "refmap": "mixins.lolilib.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.6",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "FoodStatsTFCMixin",
+    "world.ChunkGenTFCMixin",
+    "world.VANILLA_StructureComponentMixin",
+    "world.village.ChurchMixin",
+    "world.village.House1Mixin",
+    "world.village.House2Mixin",
+    "world.village.House3Mixin",
+    "world.village.PathMixin",
+    "world.village.VANILLA_MapGenVillageMixin",
+    "world.village.VANILLA_MapGenVillageMixin$StartMixin",
+    "world.village.WellMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

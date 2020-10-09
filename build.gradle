@@ -1,0 +1,138 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+    }
+}
+        
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'org.spongepowered.mixin'
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+version = '1.0'
+group = 'zone.rong.lolilib' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'lolilib'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+minecraft {
+	version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+    mappings = "snapshot_20171003"
+    def args = [
+            '-Dfml.coreMods.load=zone.rong.lolilib.LoliLibLoadingPlugin',
+            '-Dmixin.hotSwap=true',
+            '-Dmixin.checks.interfaces=true'
+    ]
+    clientJvmArgs.addAll(args)
+    serverJvmArgs.addAll(args)
+    useDepAts = true
+    makeObfSourceJar = false
+}
+
+configurations {
+    embed
+    implementation.extendsFrom(embed)
+}
+
+repositories {
+    maven {
+        url "https://www.cursemaven.com"
+    }
+    maven {
+        url "https://repo.spongepowered.org/maven"
+    }
+    maven {
+        url "https://minecraft.curseforge.com/api/maven/"
+    }
+    maven {
+        url "https://maven.mcmoddev.com"
+    }
+    maven {
+        url "https://dl.bintray.com/tslat/aoa3"
+    }
+    maven {
+        url "http://maven.tterrag.com"
+    }
+}
+
+dependencies {
+
+    compile "net.darkhax.gamestages:GameStages-1.12.2:2.0.123" // not deobfCompile -> Cause: invalid entry compressed size (expected 1072 but got 1081 bytes)
+    compile "curse.maven:ic2-classic:2979877"
+
+    /* TODO: DuplicateModsFoundException
+    compileOnly ("net.tslat.aoa3:aoa3:3.3") {
+        transitive = false
+    }
+    runtime files("./libs/AoA3-3.3.6.jar")
+     */
+	
+	// deobfCompile fileTree(include: ["*.jar"], dir: "libs")
+    deobfCompile "baubles:Baubles:1.12:1.5.2"
+    deobfCompile "curse.maven:grimoire-of-gaia:2891787"
+    deobfCompile "curse.maven:athenaeum:3063275"
+    deobfCompile "curse.maven:dropt:2957599"
+    deobfCompile "curse.maven:pyrotech:3058467"
+    deobfCompile "curse.maven:tfcraft:3066191"
+    deobfCompile "curse.maven:tfc-ambiental:3027798"
+    deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
+    deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
+    deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
+        transitive = false
+    }
+    embed ("org.spongepowered:mixin:0.8.1-SNAPSHOT") {
+        transitive = false
+    }
+
+}
+
+// Example for how to get properties into the manifest for reading by the runtime..
+jar {
+    from (configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }) {
+        exclude 'LICENSE.txt', 'META-INF/MANIFSET.MF', 'META-INF/maven/**', 'META-INF/*.RSA', 'META-INF/*.SF'
+    }
+    manifest {
+        attributes([
+                "FMLCorePluginContainsFMLMod": true,
+                "FMLCorePlugin": 'zone.rong.lolilib.LoliLibLoadingPlugin',
+                "ForceLoadAsMod": true,
+                "TweakClass": 'org.spongepowered.asm.launch.MixinTweaker'
+        ])
+    }
+}
+
+sourceSets {
+    main {
+        ext.refMap = "mixins.lolilib.refmap.json"
+    }
+}
+
+jar.finalizedBy('reobfJar')
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
