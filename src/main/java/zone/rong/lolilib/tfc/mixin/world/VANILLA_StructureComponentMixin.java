@@ -40,7 +40,6 @@ public abstract class VANILLA_StructureComponentMixin {
                     state = chest.correctFacing(world, pos, chest.getDefaultState());
                 }
                 world.setBlockState(pos, state, 2);
-                System.out.println(pos);
                 TileEntity tileentity = world.getTileEntity(pos);
                 if (tileentity instanceof TileEntityChest) {
                     ((TileEntityChest) tileentity).setLootTable(loc, rand.nextLong());
