@@ -62,7 +62,7 @@ public class TemperatureCapability implements ICapabilitySerializable<NBTTagComp
         blockTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (player.world == null || player.world.getMinecraftServer() == null || !player.world.getMinecraftServer().isDedicatedServer() && Minecraft.getMinecraft().isGamePaused()) {
+                if (player.world == null || player.world.getMinecraftServer() == null || player.isDead || !player.world.getMinecraftServer().isDedicatedServer() && Minecraft.getMinecraft().isGamePaused()) {
                     return;
                 }
                 BlockPos playerPos = player.getPosition();
