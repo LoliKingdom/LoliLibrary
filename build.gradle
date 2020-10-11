@@ -79,12 +79,14 @@ dependencies {
 	// deobfCompile fileTree(include: ["*.jar"], dir: "libs")
     deobfCompile "baubles:Baubles:1.12:1.5.2"
     deobfCompile "curse.maven:astral-sorcery:3044416"
+    deobfCompile "curse.maven:botania:2846950"
     deobfCompile "curse.maven:grimoire-of-gaia:2891787"
     deobfCompile "curse.maven:athenaeum:3063275"
     deobfCompile "curse.maven:dropt:2957599"
     deobfCompile "curse.maven:pyrotech:3058467"
     deobfCompile "curse.maven:tfcraft:3066191"
     deobfCompile "curse.maven:tfc-ambiental:3027798"
+    deobfCompile "curse.maven:the-twilight-forest:3051450"
     deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {

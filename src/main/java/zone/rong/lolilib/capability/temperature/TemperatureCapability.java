@@ -6,6 +6,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -53,13 +55,12 @@ public class TemperatureCapability implements ICapabilitySerializable<NBTTagComp
     public TemperatureCapability(EntityPlayer player) {
         this.player = player;
         this.temperature = this.getAmbientTemperature();
-        prepareTask();
+        prepareTasks();
     }
 
-    private void prepareTask() {
-        Timer blockTimer = new Timer("LoliLib/TemperatureMaintainer-Block"); // TODO: tick callback?
-        Timer environmentTimer = new Timer("LoliLib/TemperatureMaintainer-Environment");
-        blockTimer.schedule(new TimerTask() {
+    private void prepareTasks() {
+        Timer timer = new Timer("LoliLib/TemperatureMaintainer"); // TODO: tick callback?
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 if (player.world == null || player.world.getMinecraftServer() == null || player.isDead || !player.world.getMinecraftServer().isDedicatedServer() && Minecraft.getMinecraft().isGamePaused()) {
@@ -74,18 +75,13 @@ public class TemperatureCapability implements ICapabilitySerializable<NBTTagComp
                         TemperatureCapability.this.temperature += ((ITemperatureOwner) state.getBlock()).getTemperatureDifference(state, player);
                     }
                 }
-            }
-        }, 0, 5000);
-        environmentTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (player.world == null || player.world.getMinecraftServer() == null || !player.world.getMinecraftServer().isDedicatedServer() && Minecraft.getMinecraft().isGamePaused()) {
-                    return;
-                }
                 if (player.world.isDaytime()) {
                     TemperatureCapability.this.temperature += 0.5F;
                 } else {
                     TemperatureCapability.this.temperature -= 0.5F;
+                }
+                if (player.inventory.hasItemStack(new ItemStack(Blocks.DIRT))) {
+                    TemperatureCapability.this.temperature += 0.1F;
                 }
             }
         }, 0, 5000);
