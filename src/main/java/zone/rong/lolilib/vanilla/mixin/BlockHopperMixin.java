@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static zone.rong.lolilib.util.AABBUtils.makeAABB;
+import static zone.rong.lolilib.util.Utils.makeAABB;
 
 @Mixin(BlockHopper.class)
 public abstract class BlockHopperMixin extends Block {

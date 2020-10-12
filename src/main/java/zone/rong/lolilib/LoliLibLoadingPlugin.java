@@ -16,13 +16,13 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
     public LoliLibLoadingPlugin() {
         try {
             File astralsorcery = new File("./mods/".concat("astralsorcery-1.12.2-1.10.27.jar"));
-            File botania = new File("./mods/".concat("Botania+r1.10-357.jar"));
+            // File botania = new File("./mods/".concat("Botania+r1.10-357.jar"));
             File enderio = new File("./mods/".concat("EnderIO-1.12.2-5.2.61.jar"));
             File gog = new File("./mods/".concat("GrimoireOfGaia3-1.12.2-1.7.2.jar"));
             File tfc = new File("./mods/".concat("TerraFirmaCraft-MC1.12.2-1.7.4.162.jar"));
             File pyrotech = new File("./mods/".concat("pyrotech-1.12.2-1.4.34.jar"));
             loadModJar(astralsorcery);
-            loadModJar(botania);
+            // loadModJar(botania);
             loadModJar(enderio);
             loadModJar(gog);
             loadModJar(tfc);
@@ -33,7 +33,7 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
         MixinBootstrap.init();
         Mixins.addConfiguration("mixins.lolilib.vanilla.json");
         Mixins.addConfiguration("mixins.lolilib.astralsorcery.json");
-        Mixins.addConfiguration("mixins.lolilib.botania.json");
+        // Mixins.addConfiguration("mixins.lolilib.botania.json");
         Mixins.addConfiguration("mixins.lolilib.enderio.json");
         Mixins.addConfiguration("mixins.lolilib.gog.json");
         Mixins.addConfiguration("mixins.lolilib.tfc.json");

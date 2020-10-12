@@ -7,8 +7,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.capability.temperature.TemperatureCapability;
+import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
 
 @Mod(modid = LoliLib.MOD_ID, name = LoliLib.NAME, version = "1.0")
 @Mod.EventBusSubscriber
@@ -20,6 +22,7 @@ public class LoliLib {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         TemperatureCapability.initCapability();
+        GameRegistry.registerWorldGenerator(new WorldGenOverworldStructures(), 0);
     }
 
     @SubscribeEvent

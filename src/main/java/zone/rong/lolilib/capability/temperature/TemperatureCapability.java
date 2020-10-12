@@ -55,7 +55,7 @@ public class TemperatureCapability implements ICapabilitySerializable<NBTTagComp
     public TemperatureCapability(EntityPlayer player) {
         this.player = player;
         this.temperature = this.getAmbientTemperature();
-        prepareTasks();
+        // prepareTasks();
     }
 
     private void prepareTasks() {
