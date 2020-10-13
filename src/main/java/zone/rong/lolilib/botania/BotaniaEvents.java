@@ -1,11 +1,9 @@
 package zone.rong.lolilib.botania;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -16,6 +14,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.botania.common.item.material.ItemManaResource;
+import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.util.Utils;
 
 @Mod.EventBusSubscriber
@@ -28,7 +27,7 @@ public class BotaniaEvents {
             World world = event.getWorld();
             EntityPlayer player = event.getEntityPlayer();
             RayTraceResult result = Utils.rayTrace(world, player, false);
-            if (result.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(result.getBlockPos()).getBlock() == Blocks.END_PORTAL_FRAME) {
+            if (result == null || result.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(result.getBlockPos()).getBlock() == BlockTFPortalFrame.INSTANCE) {
                 return;
             }
             player.setActiveHand(event.getHand());

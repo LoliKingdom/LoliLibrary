@@ -17,15 +17,17 @@ import java.util.Random;
 public class WorldGenOverworldStructures implements IWorldGenerator {
 
     public static final WorldGenerator testGenerator = new WorldGenerator() {
+
+        private boolean generated = false;
+
         @Override
         public boolean generate(World world, Random rand, BlockPos position) {
-            System.out.println("considering");
-            if (rand.nextBoolean()) {
+            if (!generated && rand.nextInt(500) == 0) {
                 System.out.println("Considered: " + position);
                 TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-                Template template = templateManager.get(world.getMinecraftServer(), new ResourceLocation(LoliLib.MOD_ID, "test"));
+                Template template = templateManager.get(world.getMinecraftServer(), new ResourceLocation(LoliLib.MOD_ID, "tf_stronghold"));
                 template.addBlocksToWorld(world, position, new PlacementSettings().setChunk(world.getChunkFromBlockCoords(position).getPos()).setSeed(rand.nextLong()));
-                return true;
+                return generated = true;
             }
             return false;
         }
@@ -33,8 +35,9 @@ public class WorldGenOverworldStructures implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        BlockPos pos = new BlockPos(chunkX << 4, 0, chunkX << 4);
-        testGenerator.generate(world, random, world.getTopSolidOrLiquidBlock(pos));
+        BlockPos pos = new BlockPos((chunkX << 4) + 8, 5, (chunkX << 4) + 8);
+        // testGenerator.generate(world, random, world.getTopSolidOrLiquidBlock(pos));
+        testGenerator.generate(world, random, pos);
     }
 
 }

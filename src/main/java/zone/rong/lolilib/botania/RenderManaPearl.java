@@ -1,16 +1,17 @@
 package zone.rong.lolilib.botania;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import vazkii.botania.common.item.ModItems;
 
 @SideOnly(Side.CLIENT)
 public class RenderManaPearl<T extends Entity> extends Render<T> {
@@ -18,10 +19,10 @@ public class RenderManaPearl<T extends Entity> extends Render<T> {
     protected final ItemStack stack;
     private final RenderItem itemRenderer;
 
-    public RenderManaPearl(RenderManager renderManagerIn, ItemStack stack, RenderItem itemRendererIn) {
-        super(renderManagerIn);
-        this.stack = stack;
-        this.itemRenderer = itemRendererIn;
+    public RenderManaPearl() {
+        super(Minecraft.getMinecraft().getRenderManager());
+        this.stack = new ItemStack(ModItems.manaResource, 1, 1);
+        this.itemRenderer = Minecraft.getMinecraft().getRenderItem();
     }
 
     @Override
