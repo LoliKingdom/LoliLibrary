@@ -14,14 +14,14 @@ public class MainMixin {
     /**
      * @author Rongmario
      */
-    @Overwrite
+    @Overwrite(remap = false)
     @Method(modid = "tfc")
     private void registerTFCOreDict() { } // TODO: should we register TFC oredicts?
 
     /**
      * @author Rongmario
      */
-    @Overwrite
+    @Overwrite(remap = false)
     private void registerVanillaFoods() {
         OreDictionary.registerOre("sakuraLeaves", new ItemStack(Items.DYE, 1, 9));
     }
