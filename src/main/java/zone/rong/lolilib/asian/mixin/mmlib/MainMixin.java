@@ -22,7 +22,6 @@ public class MainMixin {
      * @author Rongmario
      */
     @Overwrite
-    @Method(modid = "tfc")
     private void registerVanillaFoods() {
         OreDictionary.registerOre("sakuraLeaves", new ItemStack(Items.DYE, 1, 9));
     }
