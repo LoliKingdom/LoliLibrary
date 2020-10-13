@@ -18,12 +18,12 @@ public abstract class EntityLivingBaseMixin extends Entity {
     @ModifyConstant(method = "onEntityUpdate", constant = @Constant(intValue = 300))
     private int modifyForNewBreathingMechanic(int original) {
         int air = this.getAir();
-        return air == 300 ? 300 : replenishAirSupply(air);
+        return air >= 300 ? 300 : replenishAirSupply(air);
     }
 
     private int replenishAirSupply(int air) {
         int i = EnchantmentHelper.getRespirationModifier((EntityLivingBase) (Object) this);
-        return i > 0 && this.rand.nextInt(i + 1) > 0 ? air + i : air + 1;
+        return i > 0 && this.rand.nextInt(i + 1) > 0 ? air + 2 + i : air + 2;
     }
 
 }
