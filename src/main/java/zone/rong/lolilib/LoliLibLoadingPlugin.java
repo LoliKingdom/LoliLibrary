@@ -21,19 +21,24 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
             File gog = new File("./mods/".concat("GrimoireOfGaia3-1.12.2-1.7.2.jar"));
             File ic2 = new File("./mods/".concat("IC2Classic+1.12-1.5.5.1.jar"));
             File tfc = new File("./mods/".concat("TerraFirmaCraft-MC1.12.2-1.7.4.162.jar"));
+            File mmlib = new File("./mods/".concat("MMLib-1.5.0.jar"));
             File pyrotech = new File("./mods/".concat("pyrotech-1.12.2-1.4.34.jar"));
+            File sakura = new File("./mods/".concat("Sakura-1.0.1.0-1.12.2.jar"));
             loadModJar(astralsorcery);
             // loadModJar(botania);
             loadModJar(enderio);
             loadModJar(gog);
             loadModJar(ic2);
             loadModJar(tfc);
+            loadModJar(mmlib);
             loadModJar(pyrotech);
+            loadModJar(sakura);
         } catch (Exception e) {
             e.printStackTrace();
         }
         MixinBootstrap.init();
         Mixins.addConfiguration("mixins.lolilib.vanilla.json");
+        Mixins.addConfiguration("mixins.lolilib.asian.json");
         Mixins.addConfiguration("mixins.lolilib.astralsorcery.json");
         // Mixins.addConfiguration("mixins.lolilib.botania.json");
         Mixins.addConfiguration("mixins.lolilib.enderio.json");

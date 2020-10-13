@@ -87,6 +87,8 @@ dependencies {
     deobfCompile "curse.maven:tfc-ambiental:3027798"
     deobfCompile "curse.maven:the-twilight-forest:3051450"
     deobfCompile "curse.maven:ic2-classic:3076007"
+    deobfCompile "curse.maven:mysterious-mountain-lib:3024338"
+    deobfCompile "curse.maven:sakura:3024391"
     deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
