@@ -67,7 +67,6 @@ repositories {
 dependencies {
 
     compile "net.darkhax.gamestages:GameStages-1.12.2:2.0.123" // not deobfCompile -> Cause: invalid entry compressed size (expected 1072 but got 1081 bytes)
-    compile "curse.maven:ic2-classic:2979877"
 
     /* TODO: DuplicateModsFoundException
     compileOnly ("net.tslat.aoa3:aoa3:3.3") {
@@ -87,6 +86,7 @@ dependencies {
     deobfCompile "curse.maven:tfcraft:3077761"
     deobfCompile "curse.maven:tfc-ambiental:3027798"
     deobfCompile "curse.maven:the-twilight-forest:3051450"
+    deobfCompile "curse.maven:ic2-classic:3076007"
     deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {

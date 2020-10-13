@@ -19,12 +19,14 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
             // File botania = new File("./mods/".concat("Botania+r1.10-357.jar"));
             File enderio = new File("./mods/".concat("EnderIO-1.12.2-5.2.61.jar"));
             File gog = new File("./mods/".concat("GrimoireOfGaia3-1.12.2-1.7.2.jar"));
+            File ic2 = new File("./mods/".concat("IC2Classic+1.12-1.5.5.1.jar"));
             File tfc = new File("./mods/".concat("TerraFirmaCraft-MC1.12.2-1.7.4.162.jar"));
             File pyrotech = new File("./mods/".concat("pyrotech-1.12.2-1.4.34.jar"));
             loadModJar(astralsorcery);
             // loadModJar(botania);
             loadModJar(enderio);
             loadModJar(gog);
+            loadModJar(ic2);
             loadModJar(tfc);
             loadModJar(pyrotech);
         } catch (Exception e) {
@@ -36,6 +38,7 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
         // Mixins.addConfiguration("mixins.lolilib.botania.json");
         Mixins.addConfiguration("mixins.lolilib.enderio.json");
         Mixins.addConfiguration("mixins.lolilib.gog.json");
+        Mixins.addConfiguration("mixins.lolilib.ic2.json");
         Mixins.addConfiguration("mixins.lolilib.tfc.json");
         Mixins.addConfiguration("mixins.lolilib.pyrotech.json");
     }

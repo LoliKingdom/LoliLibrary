@@ -46,7 +46,7 @@ public class LoliLib {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new ItemBlock(BlockTFPortalFrame.INSTANCE).setRegistryName("tf_portal_frame"));
+        event.getRegistry().register(new ItemBlock(BlockTFPortalFrame.INSTANCE).setRegistryName("tf_portal_frame").setUnlocalizedName(BlockTFPortalFrame.INSTANCE.getUnlocalizedName()));
     }
 
     @SubscribeEvent

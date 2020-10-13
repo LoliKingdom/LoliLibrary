@@ -25,6 +25,7 @@ public class BlockTFPortalFrame extends BlockEndPortalFrame {
     protected BlockTFPortalFrame() {
         super();
         setRegistryName(LoliLib.MOD_ID, "tf_portal_frame");
+        setUnlocalizedName(LoliLib.MOD_ID + "." + "tf_portal_frame");
         setLightLevel(0.125F);
         setHardness(-1.0F);
         setResistance(6000000.0F);
