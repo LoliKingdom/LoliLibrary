@@ -45,6 +45,7 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
         Mixins.addConfiguration("mixins.lolilib.gog.json");
         Mixins.addConfiguration("mixins.lolilib.ic2.json");
         Mixins.addConfiguration("mixins.lolilib.tfc.json");
+        Mixins.addConfiguration("mixins.lolilib.thaumcraft.json");
         Mixins.addConfiguration("mixins.lolilib.pyrotech.json");
     }
 

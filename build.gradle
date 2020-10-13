@@ -85,6 +85,7 @@ dependencies {
     deobfCompile "curse.maven:pyrotech:3058467"
     deobfCompile "curse.maven:tfcraft:3077761"
     deobfCompile "curse.maven:tfc-ambiental:3027798"
+    deobfCompile 'curse.maven:thaumcraft:2629023'
     deobfCompile "curse.maven:the-twilight-forest:3051450"
     deobfCompile "curse.maven:ic2-classic:3076007"
     deobfCompile "curse.maven:mysterious-mountain-lib:3024338"
