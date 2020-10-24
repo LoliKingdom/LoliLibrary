@@ -5,7 +5,11 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BlocksTFCMixin",
     "FoodStatsTFCMixin",
+    "TerraFirmaCraftMixin",
+    "client.ClientRegisterEventsMixin",
+    "client.TFCKeybindingsMixin",
     "world.ChunkGenTFCMixin",
     "world.VANILLA_StructureComponentMixin",
     "world.village.ChurchMixin",

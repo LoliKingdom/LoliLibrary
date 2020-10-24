@@ -41,7 +41,6 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
         Mixins.addConfiguration("mixins.lolilib.asian.json");
         Mixins.addConfiguration("mixins.lolilib.astralsorcery.json");
         // Mixins.addConfiguration("mixins.lolilib.botania.json");
-        Mixins.addConfiguration("mixins.lolilib.enderio.json");
         Mixins.addConfiguration("mixins.lolilib.gog.json");
         Mixins.addConfiguration("mixins.lolilib.ic2.json");
         Mixins.addConfiguration("mixins.lolilib.tfc.json");
