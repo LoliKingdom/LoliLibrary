@@ -13,6 +13,7 @@
     "world.ChunkGenTFCMixin",
     "world.VANILLA_StructureComponentMixin",
     "world.WorldGenTreesMixin",
+    "world.WorldRegenHandlerMixin",
     "world.village.ChurchMixin",
     "world.village.House1Mixin",
     "world.village.House2Mixin",
