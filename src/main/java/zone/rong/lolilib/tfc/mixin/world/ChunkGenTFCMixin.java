@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
@@ -32,11 +33,7 @@ public abstract class ChunkGenTFCMixin implements IChunkGenerator {
     @Unique private MapGenVillage villageGenerator = new MapGenVillage();
     @Unique private MapGenStronghold strongHoldGenerator = new MapGenStronghold();
 
-    @Final @Mutable static IWorldGenerator LOOSE_ROCKS_GEN;
-
-    static {
-        LOOSE_ROCKS_GEN = null;
-    }
+    @Shadow @Final private static final IWorldGenerator LOOSE_ROCKS_GEN = null;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void injectCtor(World w, String settingsString, CallbackInfo ci) {
@@ -59,7 +56,11 @@ public abstract class ChunkGenTFCMixin implements IChunkGenerator {
         this.strongHoldGenerator.generateStructure(world, rand, pos);
     }
 
-    @Redirect(method = "populate", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/common/IWorldGenerator;generate(Ljava/util/Random;IILnet/minecraft/world/World;Lnet/minecraft/world/gen/IChunkGenerator;Lnet/minecraft/world/chunk/IChunkProvider;)V", remap = false), remap = false)
+    @Redirect(method = "populate",
+            slice = @Slice(
+                    from = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/Biome;decorate(Lnet/minecraft/world/World;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;)V"),
+                    to = @At("TAIL")),
+            at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/common/IWorldGenerator;generate(Ljava/util/Random;IILnet/minecraft/world/World;Lnet/minecraft/world/gen/IChunkGenerator;Lnet/minecraft/world/chunk/IChunkProvider;)V", ordinal = 0, remap = false))
     private void removeLooseRockGeneration(IWorldGenerator iWorldGenerator, Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         // NO-OP
     }
