@@ -12,6 +12,7 @@
     "client.TFCKeybindingsMixin",
     "world.ChunkGenTFCMixin",
     "world.VANILLA_StructureComponentMixin",
+    "world.WorldGenTreesMixin",
     "world.village.ChurchMixin",
     "world.village.House1Mixin",
     "world.village.House2Mixin",

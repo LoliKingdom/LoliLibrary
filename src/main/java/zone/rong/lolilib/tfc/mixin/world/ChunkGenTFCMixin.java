@@ -6,6 +6,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.structure.MapGenStronghold;
@@ -13,10 +14,8 @@ import net.minecraft.world.gen.structure.MapGenVillage;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
+import net.minecraftforge.fml.common.IWorldGenerator;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -32,6 +31,12 @@ public abstract class ChunkGenTFCMixin implements IChunkGenerator {
 
     @Unique private MapGenVillage villageGenerator = new MapGenVillage();
     @Unique private MapGenStronghold strongHoldGenerator = new MapGenStronghold();
+
+    @Final @Mutable static IWorldGenerator LOOSE_ROCKS_GEN;
+
+    static {
+        LOOSE_ROCKS_GEN = null;
+    }
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void injectCtor(World w, String settingsString, CallbackInfo ci) {
@@ -52,6 +57,11 @@ public abstract class ChunkGenTFCMixin implements IChunkGenerator {
         ChunkPos pos = new ChunkPos(x, z);
         this.villageGenerator.generateStructure(world, rand, pos);
         this.strongHoldGenerator.generateStructure(world, rand, pos);
+    }
+
+    @Redirect(method = "populate", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/common/IWorldGenerator;generate(Ljava/util/Random;IILnet/minecraft/world/World;Lnet/minecraft/world/gen/IChunkGenerator;Lnet/minecraft/world/chunk/IChunkProvider;)V", remap = false), remap = false)
+    private void removeLooseRockGeneration(IWorldGenerator iWorldGenerator, Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        // NO-OP
     }
 
     @Override
