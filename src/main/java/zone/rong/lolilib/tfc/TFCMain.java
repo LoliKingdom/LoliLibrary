@@ -17,7 +17,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -25,8 +24,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import zone.rong.lolilib.capability.world.BlockDataHolder;
-import zone.rong.lolilib.capability.world.IBlockDataHolder;
 
 import java.util.List;
 import java.util.Random;
@@ -96,25 +93,27 @@ public class TFCMain {
             BlockPos pos = event.getPos();
             World world = event.getWorld();
             IBlockState state = world.getBlockState(pos);
-            IBlockDataHolder holder = world.getCapability(BlockDataHolder.INSTANCE, null);
-            BlockRockVariant rock;
-            if (state.getBlock() instanceof BlockRockVariant && ((rock = (BlockRockVariant) state.getBlock()).getType() == Rock.Type.RAW)) {
-                boolean shouldDestroy = holder.addBreakProgress(pos, 0.5F);
-                event.getEntityPlayer().swingArm(event.getHand());
-                if (!world.isRemote) {
-                    world.sendBlockBreakProgress(event.getEntityPlayer().getEntityId(), pos, (int) (holder.getBreakProgress(pos) * 10F));
-                    event.getItemStack().damageItem(1, event.getEntityPlayer());
-                    if (world.rand.nextBoolean()) {
+            if (state.getBlock() instanceof BlockRockVariant) {
+                BlockRockVariant block = (BlockRockVariant) state.getBlock();
+                if (block.getType() == Rock.Type.COBBLE || block.getType() == Rock.Type.RAW) {
+                    event.getEntityPlayer().swingArm(event.getHand());
+                    if (!world.isRemote) {
+                        event.getItemStack().damageItem(1, event.getEntityPlayer());
+                        if (world.rand.nextFloat() <= 0.3F) {
+                            return;
+                        }
                         double d0 = world.rand.nextFloat() * 0.5F + 0.25D;
                         double d1 = world.rand.nextFloat() * 0.5F + 0.25D;
                         double d2 = world.rand.nextFloat() * 0.5F + 0.25D;
-                        EntityItem entityitem = new EntityItem(world, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, ItemRock.get(rock.getRock(), 1));
+                        EntityItem entityitem = new EntityItem(world, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, ItemRock.get(block.getRock(), 1));
                         entityitem.setDefaultPickupDelay();
                         world.spawnEntity(entityitem);
-                    }
-                    if (shouldDestroy) {
-                        event.getItemStack().damageItem(1, event.getEntityPlayer());
                         world.destroyBlock(pos, false);
+                        if (block.getType() == Rock.Type.RAW) {
+                            world.setBlockState(pos, BlockRockVariant.get(block.getRock(), Rock.Type.COBBLE).getDefaultState());
+                        } else {
+                            event.getItemStack().damageItem(1, event.getEntityPlayer());
+                        }
                     }
                 }
             }
