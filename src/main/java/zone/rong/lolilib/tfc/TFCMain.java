@@ -1,34 +1,37 @@
 package zone.rong.lolilib.tfc;
 
-import net.dries007.tfc.api.recipes.heat.HeatRecipe;
-import net.dries007.tfc.api.types.Metal;
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import net.dries007.tfc.api.types.Rock;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.BlockSlabTFC;
 import net.dries007.tfc.objects.blocks.BlockStairsTFC;
-import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.stone.BlockPressurePlateTFC;
 import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.objects.blocks.stone.BlockWoodPressurePlateTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockFenceTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockPlanksTFC;
-import net.dries007.tfc.objects.te.TEPlacedItem;
-import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.objects.items.rock.ItemRock;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import zone.rong.lolilib.capability.world.BlockDataHolder;
+import zone.rong.lolilib.capability.world.IBlockDataHolder;
 
 import java.util.List;
 import java.util.Random;
 
-// @Mod.EventBusSubscriber
+@Mod.EventBusSubscriber
 public class TFCMain {
 
     public static final String STAGE_DRANK_WATER = "tfc:drank_water";
@@ -85,6 +88,41 @@ public class TFCMain {
     }
 
     @SubscribeEvent
+    public static void onLeftClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getHand() == EnumHand.OFF_HAND) {
+            return;
+        }
+        if (event.getItemStack().getItem() == ModuleTool.Items.BONE_PICKAXE || event.getItemStack().getItem() == ModuleTool.Items.CRUDE_PICKAXE) {
+            BlockPos pos = event.getPos();
+            World world = event.getWorld();
+            IBlockState state = world.getBlockState(pos);
+            IBlockDataHolder holder = world.getCapability(BlockDataHolder.INSTANCE, null);
+            BlockRockVariant rock;
+            if (state.getBlock() instanceof BlockRockVariant && ((rock = (BlockRockVariant) state.getBlock()).getType() == Rock.Type.RAW)) {
+                boolean shouldDestroy = holder.addBreakProgress(pos, 0.5F);
+                event.getEntityPlayer().swingArm(event.getHand());
+                if (!world.isRemote) {
+                    world.sendBlockBreakProgress(event.getEntityPlayer().getEntityId(), pos, (int) (holder.getBreakProgress(pos) * 10F));
+                    event.getItemStack().damageItem(1, event.getEntityPlayer());
+                    if (world.rand.nextBoolean()) {
+                        double d0 = world.rand.nextFloat() * 0.5F + 0.25D;
+                        double d1 = world.rand.nextFloat() * 0.5F + 0.25D;
+                        double d2 = world.rand.nextFloat() * 0.5F + 0.25D;
+                        EntityItem entityitem = new EntityItem(world, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, ItemRock.get(rock.getRock(), 1));
+                        entityitem.setDefaultPickupDelay();
+                        world.spawnEntity(entityitem);
+                    }
+                    if (shouldDestroy) {
+                        event.getItemStack().damageItem(1, event.getEntityPlayer());
+                        world.destroyBlock(pos, false);
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+    @SubscribeEvent
     public static void onRightClick(PlayerInteractEvent.RightClickBlock event) {
         EnumFacing facing;
         BlockPos offset;
@@ -99,5 +137,6 @@ public class TFCMain {
             }
         }
     }
+     */
 
 }

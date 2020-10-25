@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.botania.RenderManaPearl;
-import zone.rong.lolilib.capability.temperature.TemperatureCapability;
+import zone.rong.lolilib.capability.world.BlockDataHolder;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
 
@@ -27,8 +27,8 @@ public class LoliLib {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        TemperatureCapability.initCapability();
         GameRegistry.registerWorldGenerator(new WorldGenOverworldStructures(), 0);
+        BlockDataHolder.init();
     }
 
     @Mod.EventHandler
