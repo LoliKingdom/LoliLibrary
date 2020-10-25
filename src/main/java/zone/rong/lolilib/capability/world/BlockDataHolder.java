@@ -50,7 +50,7 @@ public class BlockDataHolder implements IBlockDataHolder {
     private final Object2FloatMap<BlockPos> breakPositionMap;
 
     private BlockDataHolder() {
-        this.breakPositionMap = new Object2FloatOpenHashMap();
+        this.breakPositionMap = new Object2FloatOpenHashMap<>();
     }
 
     @Override

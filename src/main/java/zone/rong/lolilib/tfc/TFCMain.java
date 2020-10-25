@@ -89,7 +89,7 @@ public class TFCMain {
         if (event.getHand() == EnumHand.OFF_HAND) {
             return;
         }
-        if (event.getItemStack().getItem() == ModuleTool.Items.BONE_PICKAXE || event.getItemStack().getItem() == ModuleTool.Items.CRUDE_PICKAXE) {
+        if (event.getItemStack().getItem().getToolClasses(event.getItemStack()).contains("pickaxe")) {
             BlockPos pos = event.getPos();
             World world = event.getWorld();
             IBlockState state = world.getBlockState(pos);
