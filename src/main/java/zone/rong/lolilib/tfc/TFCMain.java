@@ -1,6 +1,5 @@
 package zone.rong.lolilib.tfc;
 
-import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import net.dries007.tfc.api.types.Rock;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.BlockSlabTFC;

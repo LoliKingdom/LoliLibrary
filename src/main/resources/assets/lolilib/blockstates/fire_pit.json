@@ -1,0 +1,45 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "lolilib:unlit_firepit",
+		"textures": {
+			"particle": "tfc:blocks/devices/firepit/base",
+			"unlit": "tfc:blocks/devices/firepit/base",
+			"lit": "tfc:blocks/devices/firepit/base_lit"
+		},
+		"custom": {
+			"flip-v": true
+		},
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"facing": {
+			"north": {
+				"y": 90
+			},
+			"south": {
+				"y": 270
+			},
+			"west": {},
+			"east": {
+				"y": 180
+			}
+		},
+		"lit": {
+			"true": {
+				"model": "lolilib:lit_firepit"
+			},
+			"false": {
+				"model": "lolilib:unlit_firepit"
+			}
+		},
+		"attachment": {
+			"none": {
+				"model": "lolilib:lit_firepit"
+			},
+			"wok": {
+				"submodel": "lolilib:wok.obj"
+			}
+		}
+	}
+}

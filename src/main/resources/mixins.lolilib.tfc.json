@@ -9,6 +9,7 @@
     "FoodStatsTFCMixin",
     "ItemIngotMixin",
     "TerraFirmaCraftMixin",
+    "block.BlockFirePitMixin",
     "client.ClientRegisterEventsMixin",
     "client.TFCKeybindingsMixin",
     "world.ChunkGenTFCMixin",
