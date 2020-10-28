@@ -40,6 +40,15 @@
 			"wok": {
 				"submodel": "lolilib:wok.obj"
 			}
-		}
+		},
+		"inventory": [
+			{
+				"transform": "forge:default-block",
+				"model": "lolilib:lit_firepit"
+			}
+		],
+		"normal": [
+			{}
+		]
 	}
 }

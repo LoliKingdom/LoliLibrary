@@ -1,5 +1,6 @@
 package zone.rong.lolilib;
 
+import crafttweaker.CraftTweakerAPI;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.apache.logging.log4j.Logger;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.botania.RenderManaPearl;
 import zone.rong.lolilib.capability.world.BlockDataHolder;
@@ -27,8 +29,11 @@ public class LoliLib {
     public static final String MOD_ID = "lolilib";
     public static final String NAME = "Loli Library";
 
+    public static Logger LOGGER;
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        LOGGER = event.getModLog();
         GameRegistry.registerWorldGenerator(new WorldGenOverworldStructures(), 0);
         BlockDataHolder.init();
         if (event.getSide().isClient()) {
@@ -41,6 +46,11 @@ public class LoliLib {
         if (event.getSide().isClient()) {
             RenderingRegistry.registerEntityRenderingHandler(EntityManaPearl.class, new RenderManaPearl<>());
         }
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        CraftTweakerAPI.ENABLE_SEARCH_TREE_RECALCULATION = false;
     }
 
     @Mod.EventHandler

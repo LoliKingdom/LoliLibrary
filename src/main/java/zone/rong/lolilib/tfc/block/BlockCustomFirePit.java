@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -75,7 +74,6 @@ public class BlockCustomFirePit extends BlockModHorizontal {
         if (meta >= 0 && meta < Attachments.values().length) {
             state = state.withProperty(ATTACHMENT, Attachments.values()[meta]);
         }
-
         return state;
     }
 
@@ -117,14 +115,16 @@ public class BlockCustomFirePit extends BlockModHorizontal {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        ItemStack stack = playerIn.getHeldItem(hand);
-        if (stack.getItem() == CuisineRegistry.WOK && state.getValue(ATTACHMENT) == Attachments.NONE) {
-            if (!playerIn.isCreative()) {
-                stack.shrink(1);
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (state.getValue(ATTACHMENT) == Attachments.WOK) {
+            if (player.getHeldItem(hand).isEmpty()) {
+                if (player.isSneaking()) {
+                    player.setHeldItem(hand, CuisineRegistry.WOK.getDefaultInstance());
+                    return true;
+                }
+            } else {
+
             }
-            world.setBlockState(pos, this.getDefaultState().withProperty(BlockHorizontal.FACING, playerIn.getHorizontalFacing().getOpposite()).withProperty(ATTACHMENT, Attachments.WOK));
-            return true;
         }
         return false;
     }

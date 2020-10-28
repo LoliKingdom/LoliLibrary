@@ -62,6 +62,9 @@ repositories {
     maven {
         url "http://maven.tterrag.com"
     }
+    maven {
+        url = "http://maven.blamejared.com"
+    }
 }
 
 dependencies {
@@ -96,10 +99,13 @@ dependencies {
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
         transitive = false
     }
+    deobfCompile (group: 'CraftTweaker2', name: 'CraftTweaker2-MC1120-Main', version: "1.12-4.1.20.594") {
+        exclude group: 'org.ow2.asm'
+        exclude group: 'com.google.code.gson'
+    }
     embed ("org.spongepowered:mixin:0.8.1-SNAPSHOT") {
         transitive = false
     }
-
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

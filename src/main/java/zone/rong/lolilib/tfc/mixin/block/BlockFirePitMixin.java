@@ -3,6 +3,7 @@ package zone.rong.lolilib.tfc.mixin.block;
 import net.dries007.tfc.objects.blocks.devices.BlockFirePit;
 import net.dries007.tfc.objects.blocks.property.ILightableBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import snownee.cuisine.CuisineRegistry;
-import zone.rong.lolilib.tfc.TFCMain;
+import zone.rong.lolilib.tfc.block.BlockCustomFirePit;
 
 @Mixin(BlockFirePit.class)
 public abstract class BlockFirePitMixin extends Block implements ILightableBlock {
@@ -30,7 +31,7 @@ public abstract class BlockFirePitMixin extends Block implements ILightableBlock
 
     /**
      * @author Rongmario
-     * @reason Placeholder
+     * @reason Allow TFC firepit to be transformed into our custom one
      */
     @Overwrite
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -39,10 +40,10 @@ public abstract class BlockFirePitMixin extends Block implements ILightableBlock
             if (!player.isCreative()) {
                 stack.shrink(1);
             }
-            world.setBlockState(pos, this.getDefaultState().withProperty(ATTACHMENT, TFCMain.WOK_ATTACHMENT));
+            world.setBlockState(pos, BlockCustomFirePit.INSTANCE.getDefaultState().withProperty(BlockHorizontal.FACING, facing.getOpposite()).withProperty(BlockCustomFirePit.ATTACHMENT, BlockCustomFirePit.Attachments.WOK));
             return true;
         } else {
-            world.setBlockState(pos, state.withProperty(LIT, true));
+            world.setBlockState(pos, state.withProperty(LIT, true)); // TODO - FIX
         }
         return false;
     }
