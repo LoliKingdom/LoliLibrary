@@ -22,8 +22,8 @@ import zone.rong.lolilib.tfc.block.BlockCustomFirePit;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
 
-@Mod(modid = LoliLib.MOD_ID, name = LoliLib.NAME, version = "1.0", dependencies = "before:tfc")
-@Mod.EventBusSubscriber(modid = LoliLib.MOD_ID)
+@Mod(modid = LoliLib.MOD_ID, name = LoliLib.NAME, version = "1.0", dependencies = "after:*")
+@Mod.EventBusSubscriber
 public class LoliLib {
 
     public static final String MOD_ID = "lolilib";

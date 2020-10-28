@@ -5,7 +5,8 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ItemRingMixin"
+    "ItemRingMixin",
+    "client.ClientProxyMixin"
   ],
   "injectors": {
     "defaultRequire": 1
