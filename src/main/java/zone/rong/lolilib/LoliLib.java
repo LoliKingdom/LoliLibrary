@@ -1,6 +1,6 @@
 package zone.rong.lolilib;
 
-import crafttweaker.CraftTweakerAPI;
+import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -21,6 +21,8 @@ import zone.rong.lolilib.capability.world.BlockDataHolder;
 import zone.rong.lolilib.tfc.block.BlockCustomFirePit;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
+
+import java.lang.reflect.Field;
 
 @Mod(modid = LoliLib.MOD_ID, name = LoliLib.NAME, version = "1.0", dependencies = "after:*")
 @Mod.EventBusSubscriber
@@ -49,14 +51,18 @@ public class LoliLib {
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        CraftTweakerAPI.ENABLE_SEARCH_TREE_RECALCULATION = false;
+    public void postInit(FMLPostInitializationEvent event) throws NoSuchFieldException, IllegalAccessException {
+        Field alreadyChangedThePlayer = CraftTweaker.class.getDeclaredField("alreadyChangedThePlayer");
+        alreadyChangedThePlayer.setAccessible(true);
+        alreadyChangedThePlayer.setBoolean(null, true); // Changing this allows us to bypass RecipeBook build
+        // CraftTweakerAPI.ENABLE_SEARCH_TREE_RECALCULATION = false;
     }
 
     @Mod.EventHandler
     public void start(FMLLoadCompleteEvent event) {
         // Tests are done here
         // Arrays.stream(BlockFirePit.FirePitAttachment.values()).forEach(System.out::println);
+        // Redpill.based();
     }
 
     @SubscribeEvent

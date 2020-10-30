@@ -77,7 +77,7 @@ dependencies {
     }
     runtime files("./libs/AoA3-3.3.6.jar") // TODO: needed? ./libs jars gets loaded automatically...
      */
-	
+    compile "curse.maven:rustic:3053140"
 	// deobfCompile fileTree(include: ["*.jar"], dir: "libs")
     deobfCompile "baubles:Baubles:1.12:1.5.2"
     deobfCompile "curse.maven:astral-sorcery:3044416"
@@ -92,8 +92,10 @@ dependencies {
     deobfCompile 'curse.maven:thaumcraft:2629023'
     deobfCompile "curse.maven:the-twilight-forest:3051450"
     deobfCompile "curse.maven:ic2-classic:3076007"
-    deobfCompile "curse.maven:mysterious-mountain-lib:3024338"
-    deobfCompile "curse.maven:sakura:3024391"
+    deobfCompile "curse.maven:mysterious-mountain-lib:3095424"
+    deobfCompile "curse.maven:sakura:3095422"
+    deobfCompile "curse.maven:jei:3043174"
+    deobfCompile "curse.maven:foamfix-optimization-mod:2704799"
     deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {

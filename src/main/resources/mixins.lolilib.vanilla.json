@@ -7,7 +7,9 @@
   "mixins": [
     "BlockHopperMixin",
     "EntityLivingBaseMixin",
-    "GuiIngameForgeMixin"
+    "GuiIngameForgeMixin",
+    "searchtree.MinecraftMixin",
+    "searchtree.RecipeBookMixin"
   ],
   "injectors": {
     "defaultRequire": 1

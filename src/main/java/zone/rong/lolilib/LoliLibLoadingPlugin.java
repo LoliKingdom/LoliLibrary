@@ -22,9 +22,9 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
             File gog = new File("./mods/".concat("GrimoireOfGaia3-1.12.2-1.7.2.jar"));
             File ic2 = new File("./mods/".concat("IC2Classic+1.12-1.5.5.2.1.jar"));
             File tfc = new File("./mods/".concat("TerraFirmaCraft-MC1.12.2-1.7.6.164.jar"));
-            File mmlib = new File("./mods/".concat("MMLib-1.5.0.jar"));
+            File mmlib = new File("./mods/".concat("MMLib-1.7.0.jar"));
             File pyrotech = new File("./mods/".concat("pyrotech-1.12.2-1.4.34.jar"));
-            File sakura = new File("./mods/".concat("Sakura-1.0.1.0-1.12.2.jar"));
+            File sakura = new File("./mods/".concat("Sakura-1.0.3.0-1.12.2.jar"));
             loadModJar(astralsorcery);
             // loadModJar(botania);
             loadModJar(baubles);

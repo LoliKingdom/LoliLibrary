@@ -22,8 +22,6 @@ public class MainMixin {
      * @author Rongmario
      */
     @Overwrite(remap = false)
-    private void registerVanillaFoods() {
-        OreDictionary.registerOre("sakuraLeaves", new ItemStack(Items.DYE, 1, 9));
-    }
+    private void registerVanillaFoods() { }
 
 }
