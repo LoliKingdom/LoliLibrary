@@ -55,7 +55,7 @@ public class Redpill {
         ForgeRegistries.BLOCKS.forEach(b -> {
             if (b.getBlockState().getValidStates().size() > stateLimit) {
                 LoliLib.LOGGER.warn("{} has {} blockstates", b.getRegistryName(), b.getBlockState().getValidStates().size());
-                LoliLib.LOGGER.warn("That is approximately {} bytes taken up,", new ObjectSizeCalculator(ObjectSizeCalculator.getEffectiveMemoryLayoutSpecification()).calculateObjectSize(b.getBlockState()));
+                // LoliLib.LOGGER.warn("That is approximately {} bytes taken up,", new ObjectSizeCalculator(ObjectSizeCalculator.getEffectiveMemoryLayoutSpecification()).calculateObjectSize(b.getBlockState()));
                 if (map.containsKey(b.delegate)) {
                     IStateMapper stateMapper = map.get(b.delegate);
                     if (stateMapper instanceof StateMap) {

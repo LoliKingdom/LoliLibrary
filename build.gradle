@@ -96,6 +96,7 @@ dependencies {
     deobfCompile "curse.maven:sakura:3095422"
     deobfCompile "curse.maven:jei:3043174"
     deobfCompile "curse.maven:foamfix-optimization-mod:2704799"
+    deobfCompile "curse.maven:nuclearcraft-overhauled:3072330"
     deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {

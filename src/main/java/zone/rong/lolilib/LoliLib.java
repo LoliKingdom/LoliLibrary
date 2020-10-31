@@ -18,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.botania.RenderManaPearl;
 import zone.rong.lolilib.capability.world.BlockDataHolder;
+import zone.rong.lolilib.redpill.Redpill;
 import zone.rong.lolilib.tfc.block.BlockCustomFirePit;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
@@ -59,10 +60,11 @@ public class LoliLib {
     }
 
     @Mod.EventHandler
-    public void start(FMLLoadCompleteEvent event) {
+    public void start(FMLLoadCompleteEvent event) throws Throwable {
         // Tests are done here
         // Arrays.stream(BlockFirePit.FirePitAttachment.values()).forEach(System.out::println);
-        // Redpill.based();
+        Redpill.based();
+        LOGGER.info("RAM: {}", Runtime.getRuntime().totalMemory());
     }
 
     @SubscribeEvent

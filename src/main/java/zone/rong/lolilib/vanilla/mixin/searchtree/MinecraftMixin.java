@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 public class MinecraftMixin {
 
     @Shadow private SearchTreeManager searchTreeManager;
-    @Shadow public EntityPlayerSP player;
 
     /**
      * @author Rongmario
@@ -30,7 +29,7 @@ public class MinecraftMixin {
      */
     @Overwrite
     public void populateSearchTreeManager() {
-        final SearchTree<ItemStack> itemTree = new SearchTree<>(stack -> stack.getTooltip(this.player, ITooltipFlag.TooltipFlags.NORMAL)
+        final SearchTree<ItemStack> itemTree = new SearchTree<>(stack -> stack.getTooltip(null, ITooltipFlag.TooltipFlags.NORMAL)
                 .stream()
                 .map(TextFormatting::getTextWithoutFormattingCodes)
                 .filter(Objects::nonNull)

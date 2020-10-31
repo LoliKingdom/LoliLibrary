@@ -8,6 +8,7 @@
     "BlockHopperMixin",
     "EntityLivingBaseMixin",
     "GuiIngameForgeMixin",
+    "ResourceLocationMixin",
     "searchtree.MinecraftMixin",
     "searchtree.RecipeBookMixin"
   ],
