@@ -18,7 +18,6 @@ import org.apache.logging.log4j.Logger;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.botania.RenderManaPearl;
 import zone.rong.lolilib.capability.world.BlockDataHolder;
-import zone.rong.lolilib.redpill.Redpill;
 import zone.rong.lolilib.tfc.block.BlockCustomFirePit;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
@@ -55,16 +54,14 @@ public class LoliLib {
     public void postInit(FMLPostInitializationEvent event) throws NoSuchFieldException, IllegalAccessException {
         Field alreadyChangedThePlayer = CraftTweaker.class.getDeclaredField("alreadyChangedThePlayer");
         alreadyChangedThePlayer.setAccessible(true);
-        alreadyChangedThePlayer.setBoolean(null, true); // Changing this allows us to bypass RecipeBook build
+        alreadyChangedThePlayer.setBoolean(null, true); // Changing this allows us to bypass RecipeBook build AND search tree recalculation
         // CraftTweakerAPI.ENABLE_SEARCH_TREE_RECALCULATION = false;
     }
 
     @Mod.EventHandler
-    public void start(FMLLoadCompleteEvent event) throws Throwable {
+    public void start(FMLLoadCompleteEvent event) {
         // Tests are done here
         // Arrays.stream(BlockFirePit.FirePitAttachment.values()).forEach(System.out::println);
-        Redpill.based();
-        LOGGER.info("RAM: {}", Runtime.getRuntime().totalMemory());
     }
 
     @SubscribeEvent
