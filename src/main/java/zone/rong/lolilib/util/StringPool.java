@@ -1,10 +1,10 @@
 package zone.rong.lolilib.util;
 
-import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
+import java.util.WeakHashMap;
 
-public final class StringPool extends Reference2ReferenceOpenHashMap<String, String> {
+public final class StringPool extends WeakHashMap<String, String> {
 
-    public static final StringPool POOL = new StringPool(20000);
+    public static final StringPool POOL = new StringPool(10000);
 
     private StringPool(int expectedSize) {
         super(expectedSize);
@@ -13,7 +13,7 @@ public final class StringPool extends Reference2ReferenceOpenHashMap<String, Str
     public String getCanonicalString(String s) {
         String canon;
         if ((canon = this.putIfAbsent(s, s)) == null) {
-            if (size >= 20000) {
+            if (size() >= 10000) {
                 this.clear();
             }
             return s;
