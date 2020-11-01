@@ -1,6 +1,5 @@
 package zone.rong.lolilib.util;
 
-import com.google.common.base.Objects;
 import it.unimi.dsi.fastutil.Hash;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -10,12 +9,17 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import zone.rong.lolilib.LoliLibConfig;
 
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 public class Utils {
 
     private static Hash.Strategy<ItemStack> stackHashStrategy;
+
+    public static String retrieveCanonicalString(String s) {
+        return LoliLibConfig.INSTANCE.enableLoliStringPool ? s.intern() : StringPool.POOL.getCanonicalString(s);
+    }
 
     public static AxisAlignedBB makeAABB(int fromX, int fromY, int fromZ, int toX, int toY, int toZ) {
         return new AxisAlignedBB(fromX / 16F, fromY / 16F, fromZ / 16F, toX / 16F, toY / 16F, toZ / 16F);
