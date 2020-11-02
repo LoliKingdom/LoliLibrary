@@ -97,6 +97,8 @@ dependencies {
     deobfCompile "curse.maven:jei:3043174"
     deobfCompile "curse.maven:foamfix-optimization-mod:2704799"
     deobfCompile "curse.maven:nuclearcraft-overhauled:3072330"
+    deobfCompile "curse.maven:warpdrive:3069000"
+    deobfCompile "curse.maven:jeid:2919737"
     deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
@@ -106,8 +108,19 @@ dependencies {
         exclude group: 'org.ow2.asm'
         exclude group: 'com.google.code.gson'
     }
+    /*
     embed ("org.spongepowered:mixin:0.8.1-SNAPSHOT") {
         transitive = false
+    }
+     */
+    implementation ("org.spongepowered:mixin:0.8") {
+        exclude module: "asm-commons"
+        exclude module: "asm-tree"
+        exclude module: "launchwrapper"
+        exclude module: "guava"
+        exclude module: "log4j-core"
+        exclude module: "gson"
+        exclude module: "commons-io"
     }
 }
 

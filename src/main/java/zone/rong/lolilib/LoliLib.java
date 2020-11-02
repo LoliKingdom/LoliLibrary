@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.apache.logging.log4j.Logger;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.botania.RenderManaPearl;
 import zone.rong.lolilib.capability.world.BlockDataHolder;
@@ -26,16 +25,13 @@ import java.lang.reflect.Field;
 
 @Mod(modid = LoliLib.MOD_ID, name = LoliLib.NAME, version = "1.0", dependencies = "after:*")
 @Mod.EventBusSubscriber
-public class LoliLib {
+public final class LoliLib {
 
     public static final String MOD_ID = "lolilib";
     public static final String NAME = "Loli Library";
 
-    public static Logger LOGGER;
-
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LOGGER = event.getModLog();
         GameRegistry.registerWorldGenerator(new WorldGenOverworldStructures(), 0);
         BlockDataHolder.init();
         if (event.getSide().isClient()) {
