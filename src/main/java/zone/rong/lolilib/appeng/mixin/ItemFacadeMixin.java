@@ -17,4 +17,13 @@ public class ItemFacadeMixin {
     @Overwrite(remap = false)
     protected void getCheckedSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> itemStacks) { }
 
+    /**
+     * @author Rongmario
+     * @reason No.
+     */
+    @Overwrite(remap = false)
+    public ItemStack getCreativeTabIcon() {
+        return ItemStack.EMPTY;
+    }
+
 }
