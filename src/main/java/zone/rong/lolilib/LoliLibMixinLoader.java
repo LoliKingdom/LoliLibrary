@@ -15,6 +15,7 @@ public class LoliLibMixinLoader {
         Mixins.addConfiguration("mixins.lolilib.pyrotech.json");
         Mixins.addConfiguration("mixins.lolilib.tfc.json");
         Mixins.addConfiguration("mixins.lolilib.thaumcraft.json");
+        Mixins.addConfiguration("mixins.lolilib.warpdrive.json");
     }
     
 }

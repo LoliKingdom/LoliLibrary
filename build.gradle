@@ -77,6 +77,7 @@ dependencies {
     }
     runtime files("./libs/AoA3-3.3.6.jar") // TODO: needed? ./libs jars gets loaded automatically...
      */
+    compile files("./libs/mixinbooter-1.0.jar")
     compile "curse.maven:rustic:3053140"
 	// deobfCompile fileTree(include: ["*.jar"], dir: "libs")
     deobfCompile "baubles:Baubles:1.12:1.5.2"
