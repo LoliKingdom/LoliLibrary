@@ -7,6 +7,7 @@ import zone.rong.mixinbooter.MixinLoader;
 public class LoliLibMixinLoader {
 
     {
+        Mixins.addConfiguration("mixins.lolilib.appeng.json");
         Mixins.addConfiguration("mixins.lolilib.asian.json");
         Mixins.addConfiguration("mixins.lolilib.astralsorcery.json");
         Mixins.addConfiguration("mixins.lolilib.baubles.json");
