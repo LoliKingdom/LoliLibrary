@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(AppEng.class)
 public class AppEngMixin {
 
-    @Redirect(method = "preInit", at = @At(value = "INVOKE", target = "Lappeng/core/AEConfig;isFeatureEnabled(Lappeng/core/features/AEFeature;)Z"))
+    @Redirect(method = "preInit", at = @At(value = "INVOKE", target = "Lappeng/core/AEConfig;isFeatureEnabled(Lappeng/core/features/AEFeature;)Z", remap = false), remap = false)
     private boolean neverInitializeCreativeTab(AEConfig aeConfig, AEFeature f) {
         return false;
     }

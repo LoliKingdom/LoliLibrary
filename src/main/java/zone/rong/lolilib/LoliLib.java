@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.botania.RenderManaPearl;
 import zone.rong.lolilib.capability.world.BlockDataHolder;
+import zone.rong.lolilib.pyrotech.PyrotechMain;
 import zone.rong.lolilib.tfc.block.BlockCustomFirePit;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
@@ -65,6 +66,7 @@ public final class LoliLib {
         event.getRegistry().register(BlockTFPortalFrame.INSTANCE);
         BlockCustomFirePit.INSTANCE.register(MOD_ID);
         event.getRegistry().register(BlockCustomFirePit.INSTANCE);
+        PyrotechMain.registerBlocks(event);
     }
 
     @SubscribeEvent

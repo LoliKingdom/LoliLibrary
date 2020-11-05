@@ -1,4 +1,4 @@
-package zone.rong.lolilib.tfc.mixin;
+package zone.rong.lolilib.tfc.mixin.item;
 
 import net.dries007.tfc.objects.items.metal.ItemIngot;
 import net.minecraft.entity.player.EntityPlayer;

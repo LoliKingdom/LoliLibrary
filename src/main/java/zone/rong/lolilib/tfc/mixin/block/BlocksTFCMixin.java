@@ -1,4 +1,4 @@
-package zone.rong.lolilib.tfc.mixin;
+package zone.rong.lolilib.tfc.mixin.block;
 
 import net.dries007.tfc.objects.blocks.BlockPlacedItemFlat;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
