@@ -81,6 +81,8 @@ dependencies {
     compile "curse.maven:rustic:3053140"
 	// deobfCompile fileTree(include: ["*.jar"], dir: "libs")
     deobfCompile "baubles:Baubles:1.12:1.5.2"
+
+    deobfCompile "curse.maven:angry-pixel-the-betweenlands-mod:3099119"
     deobfCompile "curse.maven:applied-energistics-2:2747063"
     deobfCompile "curse.maven:astral-sorcery:3044416"
     deobfCompile "curse.maven:botania:2846950"
