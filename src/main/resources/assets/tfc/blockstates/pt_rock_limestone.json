@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/limestone"
+      "all": "tfc:blocks/stonetypes/raw/limestone",
+      "particle": "tfc:blocks/stonetypes/raw/limestone"
     }
   },
   "variants": {

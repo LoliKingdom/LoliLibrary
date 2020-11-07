@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/slate"
+      "all": "tfc:blocks/stonetypes/raw/slate",
+      "particle": "tfc:blocks/stonetypes/raw/slate"
     }
   },
   "variants": {

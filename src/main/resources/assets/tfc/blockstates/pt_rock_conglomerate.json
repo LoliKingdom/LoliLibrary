@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/conglomerate"
+      "all": "tfc:blocks/stonetypes/raw/conglomerate",
+      "particle": "tfc:blocks/stonetypes/raw/conglomerate"
     }
   },
   "variants": {

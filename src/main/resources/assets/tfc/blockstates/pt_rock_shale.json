@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/shale"
+      "all": "tfc:blocks/stonetypes/raw/shale",
+      "particle": "tfc:blocks/stonetypes/raw/shale"
     }
   },
   "variants": {

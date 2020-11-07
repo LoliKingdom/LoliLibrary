@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/rocksalt"
+      "all": "tfc:blocks/stonetypes/raw/rocksalt",
+      "particle": "tfc:blocks/stonetypes/raw/rocksalt"
     }
   },
   "variants": {

@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/schist"
+      "all": "tfc:blocks/stonetypes/raw/schist",
+      "particle": "tfc:blocks/stonetypes/raw/schist"
     }
   },
   "variants": {

@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/marble"
+      "all": "tfc:blocks/stonetypes/raw/marble",
+      "particle": "tfc:blocks/stonetypes/raw/marble"
     }
   },
   "variants": {

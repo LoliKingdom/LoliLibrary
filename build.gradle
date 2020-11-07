@@ -90,6 +90,7 @@ dependencies {
     deobfCompile "curse.maven:athenaeum:3063275"
     deobfCompile "curse.maven:dropt:2957599"
     deobfCompile "curse.maven:pyrotech:3058467"
+    deobfCompile "curse.maven:the-aurorian:3074228"
     deobfCompile "curse.maven:tfcraft:3077761"
     deobfCompile 'curse.maven:thaumcraft:2629023'
     deobfCompile "curse.maven:the-twilight-forest:3051450"

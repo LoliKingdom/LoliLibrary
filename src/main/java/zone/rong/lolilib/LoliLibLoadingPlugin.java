@@ -16,10 +16,10 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
         Mixins.addConfiguration("mixins.lolilib.vanilla.json");
     }
 
-
     @Override
     public String[] getASMTransformerClass() {
         return null;
+        // return new String[] { "zone.rong.lolilib.LoliLibTransformer" };
     }
 
     @Override

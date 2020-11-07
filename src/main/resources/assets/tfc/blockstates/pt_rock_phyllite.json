@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/phyllite"
+      "all": "tfc:blocks/stonetypes/raw/phyllite",
+      "particle": "tfc:blocks/stonetypes/raw/phyllite"
     }
   },
   "variants": {

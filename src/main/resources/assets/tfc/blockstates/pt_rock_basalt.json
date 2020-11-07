@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/basalt"
+      "all": "tfc:blocks/stonetypes/raw/basalt",
+      "particle": "tfc:blocks/stonetypes/raw/basalt"
     }
   },
   "variants": {

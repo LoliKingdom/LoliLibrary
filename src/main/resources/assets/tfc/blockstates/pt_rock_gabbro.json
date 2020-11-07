@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/gabbro"
+      "all": "tfc:blocks/stonetypes/raw/gabbro",
+      "particle": "tfc:blocks/stonetypes/raw/gabbro"
     }
   },
   "variants": {

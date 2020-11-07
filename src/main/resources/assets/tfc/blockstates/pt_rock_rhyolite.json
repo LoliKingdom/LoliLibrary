@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/rhyolite"
+      "all": "tfc:blocks/stonetypes/raw/rhyolite",
+      "particle": "tfc:blocks/stonetypes/raw/rhyolite"
     }
   },
   "variants": {

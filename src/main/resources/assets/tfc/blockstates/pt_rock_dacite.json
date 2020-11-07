@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/dacite"
+      "all": "tfc:blocks/stonetypes/raw/dacite",
+      "particle": "tfc:blocks/stonetypes/raw/dacite"
     }
   },
   "variants": {

@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/gneiss"
+      "all": "tfc:blocks/stonetypes/raw/gneiss",
+      "particle": "tfc:blocks/stonetypes/raw/gneiss"
     }
   },
   "variants": {

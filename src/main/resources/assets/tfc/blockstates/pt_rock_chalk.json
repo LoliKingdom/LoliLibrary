@@ -4,7 +4,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "tfc:blocks/stonetypes/raw/chalk"
+      "all": "tfc:blocks/stonetypes/raw/chalk",
+      "particle": "tfc:blocks/stonetypes/raw/chalk"
     }
   },
   "variants": {
