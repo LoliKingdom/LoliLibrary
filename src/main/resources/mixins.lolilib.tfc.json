@@ -13,6 +13,7 @@
     "client.TFCKeybindingsMixin",
     "item.ItemIngotMixin",
     "item.ItemRockMixin",
+    "item.ItemWoodenBucketMixin",
     "world.ChunkGenTFCMixin",
     "world.VANILLA_StructureComponentMixin",
     "world.WorldGenTreesMixin",
