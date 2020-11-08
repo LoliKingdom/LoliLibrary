@@ -7,16 +7,20 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 
+@SuppressWarnings("all")
 @Mixin(targets = "rustic.core.Rustic$2")
-public class Rustic_FarmingTabMixin {
+public abstract class Rustic_FarmingTabMixin extends CreativeTabs {
+
+    protected Rustic_FarmingTabMixin(String label) {
+        super(label);
+    }
 
     /**
      * @author Rongmario
      * @reason No.
      */
-    @Overwrite
+    @Override
     @SideOnly(Side.CLIENT)
     public void displayAllRelevantItems(NonNullList<ItemStack> stacks) {
         for (Item item : Item.REGISTRY) {

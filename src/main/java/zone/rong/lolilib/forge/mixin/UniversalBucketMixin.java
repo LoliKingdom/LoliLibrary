@@ -17,7 +17,7 @@ public class UniversalBucketMixin {
      * @author Rongmario
      * @reason Stop buckets registering as tab items
      */
-    @Overwrite(remap = false)
+    @Overwrite
     public void getSubItems(@Nullable CreativeTabs tab, @Nonnull NonNullList<ItemStack> subItems) {}
 
 }
