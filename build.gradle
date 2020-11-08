@@ -97,6 +97,7 @@ dependencies {
     deobfCompile 'curse.maven:thaumcraft:2629023'
     deobfCompile "curse.maven:the-twilight-forest:3051450"
     deobfCompile "curse.maven:ic2-classic:3076007"
+    deobfCompile "curse.maven:metallurgy-4-reforged:3104216"
     deobfCompile "curse.maven:mysterious-mountain-lib:3095424"
     deobfCompile "curse.maven:sakura:3095422"
     deobfCompile "curse.maven:jei:3043174"

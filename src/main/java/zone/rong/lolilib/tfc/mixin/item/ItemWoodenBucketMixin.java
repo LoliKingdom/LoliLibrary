@@ -21,5 +21,5 @@ public abstract class ItemWoodenBucketMixin extends Item {
             items.add(new ItemStack(this));
         }
     }
-    
+
 }
