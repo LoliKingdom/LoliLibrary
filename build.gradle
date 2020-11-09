@@ -76,7 +76,8 @@ dependencies {
         transitive = false
     }
     runtime files("./libs/AoA3-3.3.6.jar") // TODO: needed? ./libs jars gets loaded automatically...
-     */
+     */ // Deprecated - not using AoA3 at the moment
+
     compile files("./libs/mixinbooter-1.0.jar")
     compile "curse.maven:rustic:3053140"
 	// deobfCompile fileTree(include: ["*.jar"], dir: "libs")
@@ -98,7 +99,7 @@ dependencies {
     deobfCompile "curse.maven:the-twilight-forest:3051450"
     deobfCompile "curse.maven:ic2-classic:3076007"
     deobfCompile "curse.maven:metallurgy-4-reforged:3104216"
-    deobfCompile "curse.maven:mysterious-mountain-lib:3095424"
+    deobfCompile "curse.maven:mysterious-mountain-lib:3106870"
     deobfCompile "curse.maven:sakura:3095422"
     deobfCompile "curse.maven:jei:3043174"
     deobfCompile "curse.maven:foamfix-optimization-mod:2704799"
