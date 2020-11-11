@@ -8,6 +8,8 @@
     "FoodStatsTFCMixin",
     "TerraFirmaCraftMixin",
     "block.BlockFirePitMixin",
+    "block.BlockOreTFCMixin",
+    "block.BlockPlantTFCMixin",
     "block.BlocksTFCMixin",
     "client.ClientRegisterEventsMixin",
     "client.TFCKeybindingsMixin",

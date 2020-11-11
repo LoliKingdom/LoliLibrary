@@ -79,8 +79,8 @@ dependencies {
      */ // Deprecated - not using AoA3 at the moment
 
     compile files("./libs/mixinbooter-1.0.jar")
-    compile "curse.maven:rustic:3053140"
-	// deobfCompile fileTree(include: ["*.jar"], dir: "libs")
+    compile "curse.maven:rustic:3107975"
+
     deobfCompile "baubles:Baubles:1.12:1.5.2"
 
     deobfCompile "curse.maven:angry-pixel-the-betweenlands-mod:3099119"
@@ -99,8 +99,8 @@ dependencies {
     deobfCompile "curse.maven:the-twilight-forest:3051450"
     deobfCompile "curse.maven:ic2-classic:3076007"
     deobfCompile "curse.maven:metallurgy-4-reforged:3104216"
-    deobfCompile "curse.maven:mysterious-mountain-lib:3106870"
-    deobfCompile "curse.maven:sakura:3095422"
+    deobfCompile "curse.maven:mysterious-mountain-lib:3107789"
+    deobfCompile "curse.maven:sakura:3107794"
     deobfCompile "curse.maven:jei:3043174"
     deobfCompile "curse.maven:foamfix-optimization-mod:2704799"
     deobfCompile "curse.maven:nuclearcraft-overhauled:3072330"
