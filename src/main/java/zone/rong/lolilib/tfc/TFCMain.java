@@ -83,8 +83,10 @@ public class TFCMain {
         return block.getDefaultState();
     }
 
+    // TODO - for different blocks? Good idea that should be re-used in different context
+    /*
     @SubscribeEvent
-    public static void onLeftClickBlock(PlayerInteractEvent.RightClickBlock event) {
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         if (event.getHand() == EnumHand.OFF_HAND) {
             return;
         }
@@ -118,6 +120,7 @@ public class TFCMain {
             }
         }
     }
+     */
 
     /*
     @SubscribeEvent
