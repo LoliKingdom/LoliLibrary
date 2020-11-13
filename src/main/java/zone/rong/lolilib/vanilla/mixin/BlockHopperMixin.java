@@ -29,7 +29,7 @@ public abstract class BlockHopperMixin extends Block {
     @Unique private static final EnumMap<EnumFacing, List<AxisAlignedBB>> BOUNDS;
 
     static {
-        BOUNDS = Arrays.stream(EnumFacing.values())
+        BOUNDS = Arrays.stream(EnumFacing.VALUES)
                 .filter(t -> t != EnumFacing.UP)
                 .collect(Collectors.toMap(a -> a, a -> Lists.newArrayList(makeAABB(0, 10, 0, 16, 16, 16), makeAABB(4, 4, 4, 12, 10, 12)), (u, v) -> { throw new IllegalStateException(); }, () -> new EnumMap<>(EnumFacing.class)));
 
@@ -40,7 +40,7 @@ public abstract class BlockHopperMixin extends Block {
         BOUNDS.get(EnumFacing.EAST).add(makeAABB(12, 4, 6, 16, 8, 10));
     }
 
-    public BlockHopperMixin(Material material) {
+    protected BlockHopperMixin(Material material) {
         super(material);
     }
 
