@@ -1,4 +1,4 @@
-package zone.rong.lolilib.vanilla.mixin;
+package zone.rong.lolilib.vanilla.mixin.block;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
