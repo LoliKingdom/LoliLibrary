@@ -30,7 +30,7 @@ public class LoliLibClientEvents {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerColorHandlerItems(ColorHandlerEvent.Item event) {
-        event.getItemColors().registerItemColorHandler((stack, tintIndex) -> ConfigTFC.Client.DISPLAY.rottenFoodOverlayColor, RottenFoodItem.INSTANCE);
+        // TODO: event.getItemColors().registerItemColorHandler((stack, tintIndex) -> ConfigTFC.Client.DISPLAY.rottenFoodOverlayColor, RottenFoodItem.INSTANCE);
     }
 
     /**

@@ -34,11 +34,12 @@ public class BottlerRecipeMakerMixin {
                     FluidStack drain = fluidHandler.drain(16000, true);
                     drainedStack = fluidHandler.getContainer();
                     if (drain != null && drain.amount > 0) {
-                        recipes.add(new BottlerRecipeWrapper(s, FluidStack))
+                        // recipes.add(new BottlerRecipeWrapper(s, FluidStack))
                     } else {
 
                     }
                 });
+        return recipes;
     }
 
 }

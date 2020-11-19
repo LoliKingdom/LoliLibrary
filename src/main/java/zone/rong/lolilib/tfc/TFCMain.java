@@ -36,15 +36,17 @@ public class TFCMain {
     public static final String STAGE_DRANK_WATER = "tfc:drank_water";
     public static final ThreadLocal<BlockPos> CURRENT_VILLAGE_CHUNK = ThreadLocal.withInitial(() -> new BlockPos(0, 0, 0));
 
-    private static final Map<Long, ItemStack> stacksToRot = new MapMaker().weakValues().makeMap();
+    // private static final Map<Long, ItemStack> stacksToRot = new MapMaker().weakValues().makeMap();
     private static final Random treeRandom = new Random();
 
+    /*
     public static void checkRot(long time) {
         ItemStack stack = stacksToRot.get(time);
         if (stack != null) {
             stack =
         }
     }
+     */
 
     public static Tree getTree(ChunkDataTFC data) {
         List<Tree> trees = data.getValidTrees();
