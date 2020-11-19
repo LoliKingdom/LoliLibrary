@@ -76,7 +76,7 @@ public abstract class House2Mixin extends StructureVillagePieces.Village {
         this.setBlockState(world, Blocks.IRON_BARS.getDefaultState(), 9, 2, 5, bb);
         this.setBlockState(world, Blocks.IRON_BARS.getDefaultState(), 9, 2, 4, bb);
         this.fillWithBlocks(world, bb, 7, 2, 4, 8, 2, 5, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-        this.setBlockState(world, ModuleStorage.Blocks.TANK.getDefaultState(), 6, 1, 3, bb);
+        this.setBlockState(world, ModuleStorage.Blocks.TANK_BRICK.getDefaultState(), 6, 1, 3, bb);
         // this.setBlockState(world, iblockstate, 6, 1, 3, bb);
         // this.setBlockState(world, Blocks.FURNACE.getDefaultState(), 6, 2, 3, bb);
         // this.setBlockState(world, Blocks.FURNACE.getDefaultState(), 6, 3, 3, bb);
