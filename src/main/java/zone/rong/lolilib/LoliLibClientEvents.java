@@ -6,11 +6,13 @@ import baubles.client.gui.GuiPlayerExpanded;
 import baubles.common.items.ItemRing;
 import baubles.common.network.PacketHandler;
 import baubles.common.network.PacketOpenBaublesInventory;
+import net.dries007.tfc.ConfigTFC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -19,10 +21,17 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import zone.rong.lolilib.tfc.item.RottenFoodItem;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = LoliLib.MOD_ID, value = Side.CLIENT)
 public class LoliLibClientEvents {
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void registerColorHandlerItems(ColorHandlerEvent.Item event) {
+        event.getItemColors().registerItemColorHandler((stack, tintIndex) -> ConfigTFC.Client.DISPLAY.rottenFoodOverlayColor, RottenFoodItem.INSTANCE);
+    }
 
     /**
      * For the following mods:

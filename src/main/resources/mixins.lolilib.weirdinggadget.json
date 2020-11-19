@@ -1,0 +1,13 @@
+{
+  "package": "zone.rong.lolilib.weirdinggadget.mixin",
+  "refmap": "mixins.lolilib.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.6",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "WeirdingGadgetBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
