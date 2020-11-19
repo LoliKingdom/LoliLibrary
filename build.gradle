@@ -100,20 +100,21 @@ dependencies {
     deobfCompile "curse.maven:the-twilight-forest:3051450"
     deobfCompile "curse.maven:ic2-classic:3076007"
     deobfCompile "curse.maven:metallurgy-4-reforged:3104216"
-    deobfCompile "curse.maven:mysterious-mountain-lib:3107789"
-    deobfCompile "curse.maven:sakura:3107794"
+    deobfCompile "curse.maven:mysterious-mountain-lib:3115671"
+    deobfCompile "curse.maven:sakura:3115673"
     deobfCompile "curse.maven:jei:3043174"
     deobfCompile "curse.maven:foamfix-optimization-mod:2704799"
     deobfCompile "curse.maven:nuclearcraft-overhauled:3072330"
     deobfCompile "curse.maven:warpdrive:3069000"
     deobfCompile "curse.maven:jeid:2919737"
     deobfCompile "curse.maven:the-weirding-gadget:2708729"
+    deobfCompile "curse.maven:yungs-better-mineshafts-forge:3067998"
     deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
         transitive = false
     }
-    deobfCompile (group: 'CraftTweaker2', name: 'CraftTweaker2-MC1120-Main', version: "1.12-4.1.20.594") {
+    deobfCompile (group: 'CraftTweaker2', name: 'CraftTweaker2-MC1120-Main', version: "1.12-4.1.20.602") {
         exclude group: 'org.ow2.asm'
         exclude group: 'com.google.code.gson'
     }
