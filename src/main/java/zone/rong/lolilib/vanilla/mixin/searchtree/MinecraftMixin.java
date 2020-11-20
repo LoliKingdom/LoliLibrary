@@ -1,22 +1,11 @@
 package zone.rong.lolilib.vanilla.mixin.searchtree;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.client.util.SearchTree;
 import net.minecraft.client.util.SearchTreeManager;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.TextFormatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-
-import java.util.Collections;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import zone.rong.lolilib.jei.JEIItemSearchTree;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
@@ -25,10 +14,11 @@ public class MinecraftMixin {
 
     /**
      * @author Rongmario
-     * @reason To cut out recipeList from populating. And to use client player to take care of the tooltips.
+     * @reason An empty SearchTree is implemented, it will utilize JEI's own 'search tree'
      */
     @Overwrite
     public void populateSearchTreeManager() {
+        /*
         final SearchTree<ItemStack> itemTree = new SearchTree<>(stack -> stack.getTooltip(null, ITooltipFlag.TooltipFlags.NORMAL)
                 .stream()
                 .map(TextFormatting::getTextWithoutFormattingCodes)
@@ -42,7 +32,8 @@ public class MinecraftMixin {
             item.getSubItems(CreativeTabs.SEARCH, nnList);
         }
         nnList.forEach(itemTree::add);
-        this.searchTreeManager.register(SearchTreeManager.ITEMS, itemTree);
+         */
+        this.searchTreeManager.register(SearchTreeManager.ITEMS, new JEIItemSearchTree());
     }
 
 }
