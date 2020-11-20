@@ -51,7 +51,7 @@ public class BlockPTRock extends Block {
     }
 
     public BlockPTRock(Rock rock) {
-        super(Material.ROCK);
+        super(Material.GROUND);
         this.rock = rock;
         this.setHardness(0.1F);
         this.setSoundType(SoundType.STONE);
