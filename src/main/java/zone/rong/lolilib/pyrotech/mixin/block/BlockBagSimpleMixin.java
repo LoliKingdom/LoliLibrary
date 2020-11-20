@@ -1,4 +1,4 @@
-package zone.rong.lolilib.pyrotech.mixin;
+package zone.rong.lolilib.pyrotech.mixin.block;
 
 import com.codetaylor.mc.pyrotech.modules.storage.block.BlockBagSimple;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
