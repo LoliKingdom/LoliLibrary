@@ -5,8 +5,10 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BlockBagDurableMixin",
-    "BlockBagSimpleMixin"
+    "block.BlockBagDurableMixin",
+    "block.BlockBagSimpleMixin",
+    "block.ModuleWorldGenMixin",
+    "world.ModuleWorldGenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

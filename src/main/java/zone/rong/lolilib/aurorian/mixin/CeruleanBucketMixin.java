@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(TAItem_Tool_Cerulean_Bucket.class)
 public abstract class CeruleanBucketMixin extends Item {
 
-    @Shadow @Final private ItemStack empty;
+    @Shadow(remap = false) @Final private ItemStack empty;
 
     /**
      * @author Rongmario

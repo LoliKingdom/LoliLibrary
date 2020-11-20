@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.botania.common.item.material.ItemManaResource;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
-import zone.rong.lolilib.util.Utils;
+import zone.rong.lolilib.util.VanillaUtils;
 
 @Mod.EventBusSubscriber
 public class BotaniaEvents {
@@ -26,7 +26,7 @@ public class BotaniaEvents {
         if (stack.getItem() instanceof ItemManaResource && stack.getItemDamage() == 1) {
             World world = event.getWorld();
             EntityPlayer player = event.getEntityPlayer();
-            RayTraceResult result = Utils.rayTrace(world, player, false);
+            RayTraceResult result = VanillaUtils.rayTrace(world, player, false);
             if (result == null || result.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(result.getBlockPos()).getBlock() == BlockTFPortalFrame.INSTANCE) {
                 return;
             }

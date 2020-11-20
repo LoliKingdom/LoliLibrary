@@ -5,8 +5,7 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BottlerRecipeMakerMixin",
-    "FactoryJeiPluginMixin"
+    "BottlerRecipeMakerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

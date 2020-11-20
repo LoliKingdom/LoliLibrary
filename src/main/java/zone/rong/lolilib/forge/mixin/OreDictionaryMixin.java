@@ -7,7 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import org.spongepowered.asm.mixin.*;
 import zone.rong.lolilib.forge.IOreDictionary;
-import zone.rong.lolilib.util.Utils;
+import zone.rong.lolilib.util.VanillaUtils;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,7 +28,7 @@ public class OreDictionaryMixin implements IOreDictionary {
     @Unique private static final Object2IntMap<String> ID_TO_INT;
 
     static {
-        ITEM_TO_IDS = new Object2ObjectOpenCustomHashMap<>(Utils.getItemStackHashStrategy());
+        ITEM_TO_IDS = new Object2ObjectOpenCustomHashMap<>(VanillaUtils.getItemStackHashStrategy());
         ID_TO_INT = new Object2IntOpenHashMap<>();
     }
 

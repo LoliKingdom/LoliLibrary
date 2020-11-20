@@ -13,9 +13,9 @@ import thebetweenlands.common.item.tools.ItemBLBucket;
 @Mixin(ItemBLBucket.class)
 public abstract class ItemBLBucketMixin extends Item {
 
-    @Shadow @Final private ItemStack emptySyrmorite;
+    @Shadow(remap = false) @Final private ItemStack emptySyrmorite;
 
-    @Shadow @Final private ItemStack emptyWeedwood;
+    @Shadow(remap = false) @Final private ItemStack emptyWeedwood;
 
     /**
      * @author Rongmario

@@ -13,7 +13,7 @@ import zone.rong.lolilib.LoliLibConfig;
 
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
-public class Utils {
+public class VanillaUtils {
 
     private static Hash.Strategy<ItemStack> stackHashStrategy;
 
@@ -51,5 +51,7 @@ public class Utils {
             }
         };
     }
+
+    private VanillaUtils() {}
 
 }
