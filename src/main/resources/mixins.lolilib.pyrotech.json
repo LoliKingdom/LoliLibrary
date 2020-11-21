@@ -6,9 +6,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "block.BlockBagDurableMixin",
-    "block.BlockBagSimpleMixin",
-    "block.ModuleWorldGenMixin",
-    "world.ModuleWorldGenMixin"
+    "block.BlockBagSimpleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

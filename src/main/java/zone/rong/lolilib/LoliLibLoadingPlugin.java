@@ -18,8 +18,7 @@ public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
 
     @Override
     public String[] getASMTransformerClass() {
-        return null;
-        // return new String[] { "zone.rong.lolilib.LoliLibTransformer" };
+        return new String[] { "zone.rong.lolilib.LoliLibTransformer" };
     }
 
     @Override
