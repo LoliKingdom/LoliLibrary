@@ -39,7 +39,7 @@ public abstract class ChunkGenTFCMixin implements IChunkGenerator {
         this.strongHoldGenerator = (MapGenStronghold) TerrainGen.getModdedMapGen(this.strongHoldGenerator, InitMapGenEvent.EventType.STRONGHOLD);
     }
 
-    @Redirect(method = "generateChunk", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/MapGenBase;generate(Lnet/minecraft/world/World;IILnet/minecraft/world/chunk/ChunkPrimer;)V"))
+    @Redirect(method = "generateChunk", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/MapGenBase;generate(Lnet/minecraft/world/World;IILnet/minecraft/world/chunk/ChunkPrimer;)V", ordinal = 3))
     private void injectVillageGeneration(MapGenBase mapGenBase, World world, int x, int z, ChunkPrimer primer) {
         this.mineshaftGenerator.generate(world, x, z, primer);
         this.riverRavineGen.generate(world, x, z, primer);
