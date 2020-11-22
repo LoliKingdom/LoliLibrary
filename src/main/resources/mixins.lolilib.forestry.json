@@ -5,7 +5,8 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BottlerRecipeMakerMixin"
+    "BottlerRecipeMakerMixin",
+    "ItemFluidContainerForestryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
