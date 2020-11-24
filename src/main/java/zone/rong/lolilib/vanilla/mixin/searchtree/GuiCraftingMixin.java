@@ -12,7 +12,7 @@ import java.io.IOException;
 @Mixin(GuiCrafting.class)
 public abstract class GuiCraftingMixin extends GuiContainer {
 
-    public GuiCraftingMixin(Container inventorySlotsIn) {
+    protected GuiCraftingMixin(Container inventorySlotsIn) {
         super(inventorySlotsIn);
     }
 

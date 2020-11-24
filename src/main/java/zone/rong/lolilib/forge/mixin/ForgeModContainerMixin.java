@@ -15,7 +15,7 @@ public class ForgeModContainerMixin {
 
     /**
      * @author Rongmario
-     * @reason To take out the search tree + client recipe book
+     * @reason To take out the client recipe book
      */
     @Subscribe
     @Overwrite(remap = false)
