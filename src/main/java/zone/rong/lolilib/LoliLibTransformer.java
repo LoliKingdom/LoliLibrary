@@ -1,8 +1,7 @@
 package zone.rong.lolilib;
 
 import net.minecraft.launchwrapper.IClassTransformer;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.*;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.LdcInsnNode;
@@ -15,6 +14,9 @@ public class LoliLibTransformer implements IClassTransformer {
     public byte[] transform(String name, String transformedName, byte[] bytes) {
         if (transformedName.equals("net.dries007.tfc.util.calendar.ICalendarFormatted")) {
             return modifyStartingYear(bytes);
+        }
+        if (transformedName.equals("com.mushroom.midnight.common.CommonEventHandler")) {
+            return removeEventBusSubscriberAnnotations(bytes);
         }
         // if (transformedName.equals("rustic.core.Rustic")) {
             // return template(transformedName, bytes);
@@ -40,6 +42,40 @@ public class LoliLibTransformer implements IClassTransformer {
                         }
                     }
                 });
+
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+        node.accept(writer);
+        return writer.toByteArray();
+    }
+
+    private byte[] removeEventBusSubscriberAnnotations(byte[] bytes) {
+        ClassReader reader = new ClassReader(bytes);
+        ClassNode node = new ClassNode();
+        reader.accept(node, 0);
+
+        // Remove @EventBusSubscriber(modid = "midnight")
+        node.visibleAnnotations.remove(node.visibleAnnotations.stream().filter(a -> a.desc.equals("Lnet/minecraftforge/fml/common/Mod$EventBusSubscriber;")).findFirst().get());
+
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+        node.accept(writer);
+        return writer.toByteArray();
+    }
+
+    /**
+     * NEW net/minecraft/util/ResourceLocation
+     * DUP
+     * LDC DOMAIN_STRINGCONSTANT
+     * LDC PATH_STRINGCONSTANT
+     * INVOKESPECIAL net/minecraft/util/ResourceLocation.<init> (Ljava/lang/String;Ljava/lang/String;)V
+     */
+    private byte[] seekForResourceLocations(byte[] bytes) {
+        ClassReader reader = new ClassReader(bytes);
+        ClassNode node = new ClassNode();
+        reader.accept(node, 0);
+
+        node.fields.stream()
+                .filter(f -> f.desc.equals("Lnet/minecraft/util/ResourceLocation;"))
+                .forEach(f -> f.access |= Opcodes.ACC_FINAL);
 
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         node.accept(writer);
