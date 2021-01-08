@@ -54,80 +54,62 @@ repositories {
         url "https://minecraft.curseforge.com/api/maven/"
     }
     maven {
-        url "https://maven.mcmoddev.com"
-    }
-    maven {
-        url "https://dl.bintray.com/tslat/aoa3"
-    }
-    maven {
         url "http://maven.tterrag.com"
     }
     maven {
         url = "http://maven.blamejared.com"
     }
+    maven {
+        url = "http://maven.ic2.player.to"
+    }
 }
 
 dependencies {
 
-    compile "net.darkhax.gamestages:GameStages-1.12.2:2.0.123" // not deobfCompile -> Cause: invalid entry compressed size (expected 1072 but got 1081 bytes)
-
-    /* TODO: DuplicateModsFoundException
-    compileOnly ("net.tslat.aoa3:aoa3:3.3") {
-        transitive = false
-    }
-    runtime files("./libs/AoA3-3.3.6.jar") // TODO: needed? ./libs jars gets loaded automatically...
-     */ // Deprecated - not using AoA3 at the moment
-
     compile files("./libs/mixinbooter-1.0.jar")
-    compile "curse.maven:rustic:3107975"
-
-    // deobfProvided "curse.maven:foamfix-optimization-mod:2845668"
+    compile "curse.maven:rustic-256141:3107975"
+    compile "curse.maven:bookshelf-228525:2836963"
+    compile "curse.maven:game-stages-268655:2951844"
 
     deobfCompile "baubles:Baubles:1.12:1.5.2"
 
-    deobfCompile "curse.maven:angry-pixel-the-betweenlands-mod:3099119"
-    deobfCompile "curse.maven:applied-energistics-2:2747063"
-    deobfCompile "curse.maven:astral-sorcery:3044416"
-    deobfCompile "curse.maven:botania:2846950"
-    deobfCompile "curse.maven:bwm-core:2624990"
-    deobfCompile "curse.maven:bwm-suite:2965308"
-    deobfCompile "curse.maven:cuisine:2932722"
-    deobfCompile "curse.maven:forestry:2918418"
-    deobfCompile "curse.maven:grimoire-of-gaia:2891787"
-    deobfCompile "curse.maven:kiwi:2704824"
-    deobfCompile "curse.maven:athenaeum:3063275"
-    deobfCompile "curse.maven:dropt:2957599"
-    deobfCompile "curse.maven:pyrotech:3121005"
-    deobfCompile "curse.maven:the-aurorian:3074228"
-    deobfCompile "curse.maven:the-midnight:2727758"
-    deobfCompile "curse.maven:tfcraft:3117257"
-    deobfCompile 'curse.maven:thaumcraft:2629023'
-    deobfCompile "curse.maven:the-twilight-forest:3051450"
-    deobfCompile "curse.maven:ic2-classic:3076007"
-    deobfCompile "curse.maven:metallurgy-4-reforged:3104216"
-    deobfCompile "curse.maven:mysterious-mountain-lib:3115671"
-    deobfCompile "curse.maven:sakura:3115673"
-    deobfCompile "curse.maven:jei:3043174"
-    deobfCompile "curse.maven:nuclearcraft-overhauled:3072330"
-    deobfCompile "curse.maven:primalcore:2734701"
-    deobfCompile "curse.maven:warpdrive:3069000"
-    deobfCompile "curse.maven:jeid:2919737"
-    deobfCompile "curse.maven:the-weirding-gadget:2708729"
-    deobfCompile "curse.maven:yungs-better-mineshafts-forge:3067998"
-    deobfCompile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.590"
+    deobfCompile "curse.maven:angry-pixel-the-betweenlands-mod-243363:3099119"
+    deobfCompile "curse.maven:applied-energistics-2-223794:2747063"
+    deobfCompile "curse.maven:astral-sorcery-241721:3044416"
+    deobfCompile "curse.maven:botania-225643:2846950"
+    // deobfCompile "curse.maven:bwm-core:2624990" // setTranslationKey
+    // deobfCompile "curse.maven:bwm-suite:2965308" // setTranslationKey 
+    deobfCompile "curse.maven:cuisine-303694:2932722"
+    deobfCompile "curse.maven:forestry-59751:2918418"
+    deobfCompile "curse.maven:grimoire-of-gaia-228948:2891787"
+    deobfCompile "curse.maven:kiwi-303657:2704824"
+    deobfCompile "curse.maven:athenaeum-284350:3063275"
+    deobfCompile "curse.maven:dropt-284973:2957599"
+    deobfCompile "curse.maven:pyrotech-306676:3121005"
+    deobfCompile "curse.maven:the-aurorian-352137:3074228"
+    deobfCompile "curse.maven:the-midnight-304881:2727758"
+    deobfCompile "curse.maven:tfcraft-302973:3136903"
+    deobfCompile 'curse.maven:thaumcraft-223628:2629023'
+    deobfCompile "curse.maven:the-twilight-forest-227639:3051450"
+    deobfCompile "curse.maven:ic2-classic-242942:3076007"
+    deobfCompile "curse.maven:mysterious-mountain-lib-368098:3152248"
+    deobfCompile "curse.maven:sakura-333079:3152249"
+    deobfCompile "curse.maven:jei-238222:3043174"
+    deobfCompile "curse.maven:nuclearcraft-overhauled-336895:3072330"
+    deobfCompile "curse.maven:warpdrive-233565:3069000"
+    deobfCompile "curse.maven:jeid-296289:2919737"
+    deobfCompile "curse.maven:the-weirding-gadget-258914:2708729"
+    deobfCompile "curse.maven:yungs-better-mineshafts-forge-389665:3067998" // We'll build our own, soon.
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
         transitive = false
     }
+
     deobfCompile (group: 'CraftTweaker2', name: 'CraftTweaker2-MC1120-Main', version: "1.12-4.1.20.602") {
         exclude group: 'org.ow2.asm'
         exclude group: 'com.google.code.gson'
     }
-    /*
-    embed ("org.spongepowered:mixin:0.8.1-SNAPSHOT") {
-        transitive = false
-    }
-     */
+
     implementation ("org.spongepowered:mixin:0.8") {
         exclude module: "asm-commons"
         exclude module: "asm-tree"
@@ -179,4 +161,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+
+    rename '(.+_at.cfg)', 'META-INF/$1'
+
 }

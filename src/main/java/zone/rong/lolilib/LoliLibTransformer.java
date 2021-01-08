@@ -4,6 +4,7 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FieldInsnNode;
 import org.objectweb.asm.tree.LdcInsnNode;
 
 import java.util.ListIterator;
@@ -18,13 +19,19 @@ public class LoliLibTransformer implements IClassTransformer {
         if (transformedName.equals("com.mushroom.midnight.common.CommonEventHandler")) {
             return removeEventBusSubscriberAnnotations(bytes);
         }
+        if (transformedName.equals("net.minecraft.item.crafting.FurnaceRecipes")) {
+            return submitBetterFurnaceRecipesInstance(bytes);
+        }
+        // if (transformedName.equals("net.minecraft.util.EnumFacing")) {
+            // return fixEnumArrayDupe(bytes);
+        // }
         // if (transformedName.equals("rustic.core.Rustic")) {
             // return template(transformedName, bytes);
         // }
         return bytes;
     }
 
-    private static byte[] modifyStartingYear(byte[] bytes) {
+    private byte[] modifyStartingYear(byte[] bytes) {
         ClassReader reader = new ClassReader(bytes);
         ClassNode node = new ClassNode();
         reader.accept(node, 0);
@@ -55,6 +62,45 @@ public class LoliLibTransformer implements IClassTransformer {
 
         // Remove @EventBusSubscriber(modid = "midnight")
         node.visibleAnnotations.remove(node.visibleAnnotations.stream().filter(a -> a.desc.equals("Lnet/minecraftforge/fml/common/Mod$EventBusSubscriber;")).findFirst().get());
+
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+        node.accept(writer);
+        return writer.toByteArray();
+    }
+
+    private byte[] submitBetterFurnaceRecipesInstance(byte[] bytes) {
+        ClassReader reader = new ClassReader(bytes);
+        ClassNode node = new ClassNode();
+        reader.accept(node, 0);
+
+        node.methods.stream()
+                .filter(n -> n.name.equals("<clinit>"))
+                .findFirst()
+                .ifPresent(m -> {
+                    boolean startRemoving = false;
+                    for (final ListIterator<AbstractInsnNode> iterator = m.instructions.iterator(); iterator.hasNext();) {
+                        AbstractInsnNode insnNode = iterator.next();
+                        if (insnNode.getOpcode() == Opcodes.NEW) {
+                            startRemoving = true;
+                        } else if (insnNode.getOpcode() == Opcodes.RETURN) {
+                            break;
+                        } else if (startRemoving) {
+                            m.instructions.remove(insnNode);
+                        }
+                    }
+                });
+
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+        node.accept(writer);
+        return writer.toByteArray();
+    }
+
+    private byte[] fixEnumArrayDupe(byte[] bytes) {
+        ClassReader reader = new ClassReader(bytes);
+        ClassNode node = new ClassNode();
+        reader.accept(node, 0);
+
+
 
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         node.accept(writer);
@@ -94,5 +140,11 @@ public class LoliLibTransformer implements IClassTransformer {
         return writer.toByteArray();
     }
      */
+
+    public static class ASMHelperMethods {
+
+
+
+    }
 
 }

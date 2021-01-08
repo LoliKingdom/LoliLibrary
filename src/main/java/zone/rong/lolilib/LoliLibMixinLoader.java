@@ -16,7 +16,7 @@ public class LoliLibMixinLoader {
         Mixins.addConfiguration("mixins.lolilib.forestry.json");
         Mixins.addConfiguration("mixins.lolilib.gog.json");
         Mixins.addConfiguration("mixins.lolilib.ic2.json");
-        Mixins.addConfiguration("mixins.lolilib.metallurgy.json");
+        // Mixins.addConfiguration("mixins.lolilib.metallurgy.json");
         Mixins.addConfiguration("mixins.lolilib.pyrotech.json");
         Mixins.addConfiguration("mixins.lolilib.rustic.json");
         Mixins.addConfiguration("mixins.lolilib.tfc.json");

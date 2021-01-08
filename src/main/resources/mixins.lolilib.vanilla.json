@@ -5,10 +5,12 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "block.BlockHopperMixin",
     "EntityLivingBaseMixin",
+    "FurnaceRecipesMixin",
     "GuiIngameForgeMixin",
     "ResourceLocationMixin",
+    "block.BlockHopperMixin",
+    "block.TileEntityFurnaceMixin",
     "searchtree.MinecraftMixin",
     "searchtree.RecipeBookMixin"
   ],
