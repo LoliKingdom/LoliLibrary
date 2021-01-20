@@ -81,7 +81,7 @@ public class BlockPTRock extends Block {
         super.neighborChanged(state, world, pos, blockIn, fromPos);
         BlockPos downPos;
         if (!world.isSideSolid((downPos = pos.down()), EnumFacing.UP) && !(world.getBlockState(downPos).getBlock() instanceof BlockFarmlandTFC)) {
-            world.setBlockToAir(pos);
+            world.destroyBlock(pos, true);
         }
     }
 

@@ -67,12 +67,15 @@ repositories {
 dependencies {
 
     compile files("./libs/mixinbooter-1.0.jar")
+    compile files("./libs/JustEnoughIDs-1.0.3-SNAPSHOT-nolibs-deobf.jar")
+
     compile "curse.maven:rustic-256141:3107975"
     compile "curse.maven:bookshelf-228525:2836963"
     compile "curse.maven:game-stages-268655:2951844"
 
     deobfCompile "baubles:Baubles:1.12:1.5.2"
 
+    deobfCompile "curse.maven:academycraft-236188:3005254"
     deobfCompile "curse.maven:angry-pixel-the-betweenlands-mod-243363:3099119"
     deobfCompile "curse.maven:applied-energistics-2-223794:2747063"
     deobfCompile "curse.maven:astral-sorcery-241721:3044416"
@@ -97,7 +100,6 @@ dependencies {
     deobfCompile "curse.maven:jei-238222:3043174"
     deobfCompile "curse.maven:nuclearcraft-overhauled-336895:3072330"
     deobfCompile "curse.maven:warpdrive-233565:3069000"
-    deobfCompile "curse.maven:jeid-296289:2919737"
     deobfCompile "curse.maven:the-weirding-gadget-258914:2708729"
     deobfCompile "curse.maven:yungs-better-mineshafts-forge-389665:3067998" // We'll build our own, soon.
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
@@ -131,7 +133,8 @@ jar {
                 "FMLCorePluginContainsFMLMod": true,
                 "FMLCorePlugin": 'zone.rong.lolilib.LoliLibLoadingPlugin',
                 "ForceLoadAsMod": true,
-                "TweakClass": 'org.spongepowered.asm.launch.MixinTweaker'
+                "TweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
+                "FMLAT": "lolilib_at.cfg"
         ])
     }
 }

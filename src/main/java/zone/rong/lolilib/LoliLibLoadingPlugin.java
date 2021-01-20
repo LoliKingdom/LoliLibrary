@@ -2,6 +2,7 @@ package zone.rong.lolilib;
 
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.Mixins;
 
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Map;
 public class LoliLibLoadingPlugin implements IFMLLoadingPlugin {
 
     public LoliLibLoadingPlugin() {
+        MixinBootstrap.init();
         Mixins.addConfiguration("mixins.lolilib.forge.json");
         Mixins.addConfiguration("mixins.lolilib.vanilla.json");
     }
