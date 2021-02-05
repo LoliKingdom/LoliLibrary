@@ -9,6 +9,7 @@
     "FurnaceRecipesMixin",
     "GuiIngameForgeMixin",
     "ResourceLocationMixin",
+    "VisGraphMixin",
     "block.BlockHopperMixin",
     "block.TileEntityFurnaceMixin",
     "searchtree.MinecraftMixin",
