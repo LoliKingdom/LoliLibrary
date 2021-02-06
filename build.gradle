@@ -67,7 +67,6 @@ repositories {
 dependencies {
 
     compile files("./libs/mixinbooter-1.0.jar")
-    compile files("./libs/JustEnoughIDs-1.0.3-SNAPSHOT-nolibs-deobf.jar")
 
     compile "curse.maven:rustic-256141:3107975"
     compile "curse.maven:bookshelf-228525:2836963"
@@ -102,6 +101,9 @@ dependencies {
     deobfCompile "curse.maven:warpdrive-233565:3069000"
     deobfCompile "curse.maven:the-weirding-gadget-258914:2708729"
     deobfCompile "curse.maven:yungs-better-mineshafts-forge-389665:3067998" // We'll build our own, soon.
+
+    deobfCompile "curse.maven:jeid-296289:2919737"
+
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
         transitive = false

@@ -22,6 +22,9 @@ public class LoliLibTransformer implements IClassTransformer {
         if (transformedName.equals("net.minecraft.item.crafting.FurnaceRecipes")) {
             return submitBetterFurnaceRecipesInstance(bytes);
         }
+        if (transformedName.equals("net.minecraft.block.Block")) {
+            return modifyObjectIntIdentityMap(bytes);
+        }
         // if (transformedName.equals("net.minecraft.util.EnumFacing")) {
             // return fixEnumArrayDupe(bytes);
         // }
@@ -89,6 +92,21 @@ public class LoliLibTransformer implements IClassTransformer {
                         }
                     }
                 });
+
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+        node.accept(writer);
+        return writer.toByteArray();
+    }
+
+    private byte[] modifyObjectIntIdentityMap(byte[] bytes) {
+        ClassReader reader = new ClassReader(bytes);
+        ClassNode node = new ClassNode();
+        reader.accept(node, 0);
+
+        node.fields.stream()
+                .filter(f -> f.name.equals("BLOCK_STATE_IDS"))
+                .findFirst()
+                .ifPresent(f -> f.signature = "it.unimi.dsi.fastutil.objects.Reference2IntMap");
 
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         node.accept(writer);
