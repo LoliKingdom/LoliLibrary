@@ -7,6 +7,7 @@ import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockObserver;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import net.minecraft.util.ObjectIntIdentityMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.registries.*;
@@ -24,7 +25,7 @@ public class EnhancedBlockCallbacks implements IForgeRegistry.AddCallback<Block>
     @Override
     @SuppressWarnings({"unchecked", "deprecation", "ConstantConditions"})
     public void onAdd(IForgeRegistryInternal<Block> owner, RegistryManager stage, int id, Block block, @Nullable Block oldBlock) {
-        EnhancedObjectIntIdentityMap<IBlockState> blockstateMap = owner.getSlaveMap(BLOCKSTATE_TO_ID, EnhancedObjectIntIdentityMap.class);
+        ObjectIntIdentityMap<IBlockState> blockstateMap = owner.getSlaveMap(BLOCKSTATE_TO_ID, ObjectIntIdentityMap.class);
         if (oldBlock != null) {
             for (IBlockState state : oldBlock.getBlockState().getValidStates()) {
                 blockstateMap.remove(state);
@@ -70,13 +71,13 @@ public class EnhancedBlockCallbacks implements IForgeRegistry.AddCallback<Block>
     @Override
     public void onClear(IForgeRegistryInternal<Block> owner, RegistryManager stage)
     {
-        owner.getSlaveMap(BLOCKSTATE_TO_ID, EnhancedObjectIntIdentityMap.class).clear();
+        owner.getSlaveMap(BLOCKSTATE_TO_ID, ObjectIntIdentityMap.class).clear();
     }
 
     @Override
     public void onCreate(IForgeRegistryInternal<Block> owner, RegistryManager stage)
     {
-        final EnhancedObjectIntIdentityMap<IBlockState> idMap = new EnhancedObjectIntIdentityMap<IBlockState>()
+        final ObjectIntIdentityMap<IBlockState> idMap = new ObjectIntIdentityMap<IBlockState>()
         {
             @Override
             @SuppressWarnings({"deprecation", "ConstantConditions"})

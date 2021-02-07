@@ -11,7 +11,7 @@ import zone.rong.lolilib.util.EnhancedBlockCallbacks;
 @Mixin(GameData.class)
 public class GameDataMixin {
 
-    @Redirect(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/RegistryBuilder;addCallback(Ljava/lang/Object;)Lnet/minecraftforge/registries/RegistryBuilder;", ordinal = 0))
+    @Redirect(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/RegistryBuilder;addCallback(Ljava/lang/Object;)Lnet/minecraftforge/registries/RegistryBuilder;", ordinal = 0, remap = false), remap = false)
     private static RegistryBuilder<Block> onAddingBlockCallback(RegistryBuilder<Block> registryBuilder, Object inst) {
         return registryBuilder.addCallback(EnhancedBlockCallbacks.INSTANCE);
     }

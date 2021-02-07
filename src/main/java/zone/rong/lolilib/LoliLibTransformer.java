@@ -1,33 +1,57 @@
 package zone.rong.lolilib;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.*;
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.FieldInsnNode;
-import org.objectweb.asm.tree.LdcInsnNode;
+import org.objectweb.asm.tree.*;
 
+import java.io.IOException;
 import java.util.ListIterator;
+import java.util.Map;
+import java.util.function.Function;
 
 public class LoliLibTransformer implements IClassTransformer {
 
+    final Map<String, Function<byte[], byte[]>> transformations = new Object2ObjectOpenHashMap<>();
+
+    public LoliLibTransformer() {
+        transformations.put("net.dries007.tfc.util.calendar.ICalendarFormatted", this::modifyStartingYear);
+        transformations.put("com.mushroom.midnight.common.CommonEventHandler", this::removeEventBusSubscriberAnnotations);
+        transformations.put("net.minecraft.item.crafting.FurnaceRecipes", this::submitBetterFurnaceRecipesInstance);
+        transformations.put("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
+    }
+
     @Override
     public byte[] transform(String name, String transformedName, byte[] bytes) {
-        if (transformedName.equals("net.dries007.tfc.util.calendar.ICalendarFormatted")) {
-            return modifyStartingYear(bytes);
+        Function<byte[], byte[]> getBytes = transformations.get(transformedName);
+        if (getBytes != null) {
+            return getBytes.apply(bytes);
         }
-        if (transformedName.equals("com.mushroom.midnight.common.CommonEventHandler")) {
-            return removeEventBusSubscriberAnnotations(bytes);
+        return bytes;
+    }
+
+    private byte[] replaceWithExistingClass(byte[] bytes, String existingClassName, boolean alignPath) {
+        try {
+            ClassReader reader = new ClassReader(Launch.classLoader.getClassBytes(existingClassName));
+            ClassNode node = new ClassNode();
+            reader.accept(node, 0);
+
+            if (alignPath) {
+                ClassReader originalReader = new ClassReader(bytes);
+                ClassNode originalNode = new ClassNode();
+                originalReader.accept(originalNode, 0);
+
+                node.signature = originalNode.signature;
+                node.name = originalNode.name;
+            }
+
+            ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+            node.accept(writer);
+            return writer.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        if (transformedName.equals("net.minecraft.item.crafting.FurnaceRecipes")) {
-            return submitBetterFurnaceRecipesInstance(bytes);
-        }
-        // if (transformedName.equals("net.minecraft.util.EnumFacing")) {
-            // return fixEnumArrayDupe(bytes);
-        // }
-        // if (transformedName.equals("rustic.core.Rustic")) {
-            // return template(transformedName, bytes);
-        // }
         return bytes;
     }
 
@@ -105,46 +129,6 @@ public class LoliLibTransformer implements IClassTransformer {
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         node.accept(writer);
         return writer.toByteArray();
-    }
-
-    /**
-     * NEW net/minecraft/util/ResourceLocation
-     * DUP
-     * LDC DOMAIN_STRINGCONSTANT
-     * LDC PATH_STRINGCONSTANT
-     * INVOKESPECIAL net/minecraft/util/ResourceLocation.<init> (Ljava/lang/String;Ljava/lang/String;)V
-     */
-    private byte[] seekForResourceLocations(byte[] bytes) {
-        ClassReader reader = new ClassReader(bytes);
-        ClassNode node = new ClassNode();
-        reader.accept(node, 0);
-
-        node.fields.stream()
-                .filter(f -> f.desc.equals("Lnet/minecraft/util/ResourceLocation;"))
-                .forEach(f -> f.access |= Opcodes.ACC_FINAL);
-
-        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-        node.accept(writer);
-        return writer.toByteArray();
-    }
-
-    /*
-    private static byte[] template(String transformedName, byte[] bytes) {
-        ClassReader reader = new ClassReader(bytes);
-        ClassNode node = new ClassNode();
-        reader.accept(node, 0);
-
-
-        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-        node.accept(writer);
-        return writer.toByteArray();
-    }
-     */
-
-    public static class ASMHelperMethods {
-
-
-
     }
 
 }
