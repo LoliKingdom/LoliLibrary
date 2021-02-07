@@ -10,6 +10,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * {@link zone.rong.lolilib.LoliLibTransformer}
+ */
 public class ObjectIntIdentityMap<T> implements IObjectIntIterable<T> {
 
     protected final Reference2IntMap<T> identityMap;

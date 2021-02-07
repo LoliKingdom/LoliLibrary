@@ -15,11 +15,23 @@ public class LoliLibTransformer implements IClassTransformer {
 
     final Map<String, Function<byte[], byte[]>> transformations = new Object2ObjectOpenHashMap<>();
 
+    private final boolean isDeobf = (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
+
     public LoliLibTransformer() {
-        transformations.put("net.dries007.tfc.util.calendar.ICalendarFormatted", this::modifyStartingYear);
-        transformations.put("com.mushroom.midnight.common.CommonEventHandler", this::removeEventBusSubscriberAnnotations);
-        transformations.put("net.minecraft.item.crafting.FurnaceRecipes", this::submitBetterFurnaceRecipesInstance);
-        transformations.put("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
+        addTransformation("net.dries007.tfc.util.calendar.ICalendarFormatted", this::modifyStartingYear);
+        addTransformation("com.mushroom.midnight.common.CommonEventHandler", this::removeEventBusSubscriberAnnotations);
+        addTransformation("net.minecraft.util.EnumFacing", this::fixEnumArrayDupe);
+        addTransformation("net.minecraft.item.EnumDyeColor", this::fixEnumArrayDupe);
+        addTransformation("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
+        addTransformation("net.minecraft.item.crafting.FurnaceRecipes", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.item.crafting.FurnaceRecipes", false));
+    }
+
+    public void addTransformation(String key, Function<byte[], byte[]> value) {
+        addTransformation(key, key, value);
+    }
+
+    public void addTransformation(String obfKey, String deobfKey, Function<byte[], byte[]> value) {
+        transformations.put(isDeobf ? deobfKey : obfKey, value);
     }
 
     @Override
@@ -124,7 +136,13 @@ public class LoliLibTransformer implements IClassTransformer {
         ClassNode node = new ClassNode();
         reader.accept(node, 0);
 
-
+        node.methods.stream()
+                .filter(m -> m.name.equals("values"))
+                .forEach(m -> {
+                    AbstractInsnNode returnNode = m.instructions.getLast();
+                    m.instructions.remove(returnNode.getPrevious().getPrevious());
+                    m.instructions.remove(returnNode.getPrevious());
+                });
 
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         node.accept(writer);
