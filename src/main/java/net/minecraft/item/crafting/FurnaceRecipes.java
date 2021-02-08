@@ -34,6 +34,8 @@ public class FurnaceRecipes {
         this.smelt = new Object2ObjectOpenCustomHashMap<>(ItemStackHashStrategy.INSTANCE);
         this.experience = new Object2FloatOpenHashMap<>();
 
+        this.experience.defaultReturnValue(0.005F);
+
         this.addSmeltingRecipeForBlock(Blocks.IRON_ORE, new ItemStack(Items.IRON_INGOT), 0.7F);
         this.addSmeltingRecipeForBlock(Blocks.GOLD_ORE, new ItemStack(Items.GOLD_INGOT), 1.0F);
         this.addSmeltingRecipeForBlock(Blocks.DIAMOND_ORE, new ItemStack(Items.DIAMOND), 1.0F);
@@ -141,7 +143,8 @@ public class FurnaceRecipes {
     }
 
     public ItemStack getSmeltingResult(ItemStack stack) {
-        return smelt.getOrDefault(stack, ItemStack.EMPTY);
+        ItemStack result = smelt.get(stack);
+        return result == null ? ItemStack.EMPTY : result;
     }
 
     public Map<ItemStack, ItemStack> getSmeltingList() {
@@ -151,7 +154,7 @@ public class FurnaceRecipes {
     public float getSmeltingExperience(ItemStack stack) {
         float exp = stack.getItem().getSmeltingExperience(stack);
         if (exp == -1) {
-            exp = experience.getOrDefault(stack, 0F);
+            exp = experience.getFloat(stack);
         }
         return exp;
     }
