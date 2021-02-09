@@ -34,7 +34,7 @@ public class FurnaceRecipes {
         this.smelt = new Object2ObjectOpenCustomHashMap<>(ItemStackHashStrategy.INSTANCE);
         this.experience = new Object2FloatOpenHashMap<>();
 
-        this.experience.defaultReturnValue(0.005F);
+        this.experience.defaultReturnValue(0F);
 
         this.addSmeltingRecipeForBlock(Blocks.IRON_ORE, new ItemStack(Items.IRON_INGOT), 0.7F);
         this.addSmeltingRecipeForBlock(Blocks.GOLD_ORE, new ItemStack(Items.GOLD_INGOT), 1.0F);
