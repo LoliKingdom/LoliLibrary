@@ -11,6 +11,7 @@
     "ResourceLocationMixin",
     "VisGraphMixin",
     "block.BlockHopperMixin",
+    "block.TileEntityFurnaceMixin",
     "searchtree.MinecraftMixin",
     "searchtree.RecipeBookMixin"
   ],

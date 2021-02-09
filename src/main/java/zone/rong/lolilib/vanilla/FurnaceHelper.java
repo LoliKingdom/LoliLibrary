@@ -10,7 +10,6 @@ public class FurnaceHelper {
     private static final Object2IntMap<ItemStack> cookTimes = new Object2IntOpenCustomHashMap<>(ItemStackHashStrategy.INSTANCE);
 
     static {
-        cookTimes.put(new ItemStack(Blocks.LAPIS_ORE), 50);
         cookTimes.defaultReturnValue(200);
     }
 
