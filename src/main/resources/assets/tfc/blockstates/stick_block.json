@@ -1,0 +1,26 @@
+{
+  "__comment": "Stick Block",
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "normal": [
+      {
+        "model": "tfc:stick_block"
+      },
+      {
+        "model": "tfc:stick_block",
+        "y": 90
+      },
+      {
+        "model": "tfc:stick_block",
+        "y": 180
+      },
+      {
+        "model": "tfc:stick_block",
+        "y": 270
+      }
+    ]
+  }
+}

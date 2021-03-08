@@ -1,10 +1,7 @@
-package zone.rong.lolilib.pyrotech.block;
+package zone.rong.lolilib.tfc.block;
 
 import net.dries007.tfc.TerraFirmaCraft;
-import net.dries007.tfc.api.registries.TFCRegistries;
-import net.dries007.tfc.api.types.Rock;
 import net.dries007.tfc.objects.blocks.stone.BlockFarmlandTFC;
-import net.dries007.tfc.objects.items.rock.ItemRock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -13,6 +10,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -28,38 +26,20 @@ import zone.rong.lolilib.tfc.TFCMain;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class BlockPTRock extends Block {
+public class BlockStick extends Block {
 
-    private static boolean generated;
+    public static final BlockStick INSTANCE = new BlockStick();
 
-    private final Rock rock;
-
-    public static BlockPTRock[] generateBlocks() {
-        if (generated) {
-            throw new UnsupportedOperationException();
-        }
-        generated = true;
-        return TFCRegistries.ROCKS.getValuesCollection()
-                .stream()
-                .map(BlockPTRock::new)
-                .map(b -> (BlockPTRock) b.setRegistryName(TerraFirmaCraft.MOD_ID, "pt_rock_".concat(b.rock.getRegistryName().getResourcePath())))
-                .toArray(BlockPTRock[]::new);
-    }
-
-    public BlockPTRock(Rock rock) {
-        super(Material.GROUND);
-        this.rock = rock;
+    public BlockStick() {
+        super(Material.WOOD);
         this.setHardness(0.1F);
-        this.setSoundType(SoundType.STONE);
-    }
-
-    public Rock getRock() {
-        return rock;
+        this.setSoundType(SoundType.WOOD);
+        setRegistryName(TerraFirmaCraft.MOD_ID, "stick_block");
     }
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        drops.add(ItemRock.get(this.rock, 1));
+        drops.add(new ItemStack(Items.STICK));
     }
 
     @Override
@@ -97,7 +77,7 @@ public class BlockPTRock extends Block {
     @Override
     @Nonnull
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return ItemRock.get(this.rock, 1);
+        return new ItemStack(Items.STICK);
     }
 
     @Nonnull

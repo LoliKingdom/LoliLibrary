@@ -17,17 +17,8 @@
     "item.ItemRockMixin",
     "item.ItemWoodenBucketMixin",
     "world.ChunkGenTFCMixin",
-    "world.VANILLA_StructureComponentMixin",
     "world.WorldGenLooseRocksMixin",
-    "world.WorldGenTreesMixin",
-    "world.village.ChurchMixin",
-    "world.village.House1Mixin",
-    "world.village.House2Mixin",
-    "world.village.House3Mixin",
-    "world.village.PathMixin",
-    "world.village.VANILLA_MapGenVillageMixin",
-    "world.village.VANILLA_MapGenVillageMixin$StartMixin",
-    "world.village.WellMixin"
+    "world.WorldGenTreesMixin"
   ],
   "injectors": {
     "defaultRequire": 1

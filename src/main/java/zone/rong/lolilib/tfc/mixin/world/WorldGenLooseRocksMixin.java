@@ -21,7 +21,7 @@ public class WorldGenLooseRocksMixin {
 
     /**
      * @author Rongmario
-     * @reason Generate our own rock (blocks) instead. Note: Config options are ignored.
+     * @reason Generate our own rock (blocks) instead. Note: Config options are ignored. TODO: use GT rocks
      */
     @Overwrite(remap = false)
     private void generateRock(World world, BlockPos pos, @Nullable Vein vein, Rock rock) {
