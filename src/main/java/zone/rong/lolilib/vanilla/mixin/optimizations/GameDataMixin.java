@@ -1,4 +1,4 @@
-package zone.rong.lolilib.vanilla.mixin;
+package zone.rong.lolilib.vanilla.mixin.optimizations;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.registries.GameData;

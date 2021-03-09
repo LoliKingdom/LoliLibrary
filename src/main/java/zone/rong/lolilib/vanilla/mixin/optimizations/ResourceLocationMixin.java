@@ -1,4 +1,4 @@
-package zone.rong.lolilib.vanilla.mixin;
+package zone.rong.lolilib.vanilla.mixin.optimizations;
 
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;

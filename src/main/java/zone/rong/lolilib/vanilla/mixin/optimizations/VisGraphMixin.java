@@ -1,4 +1,4 @@
-package zone.rong.lolilib.vanilla.mixin;
+package zone.rong.lolilib.vanilla.mixin.optimizations;
 
 import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
 import it.unimi.dsi.fastutil.ints.IntPriorityQueue;
