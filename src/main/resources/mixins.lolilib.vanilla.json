@@ -15,6 +15,7 @@
     "optimizations.GameDataMixin",
     "optimizations.MathHelperMixin",
     "optimizations.ResourceLocationMixin",
+    "optimizations.StateImplementationMixin",
     "optimizations.VisGraphMixin",
     "optimizations.WorldMixin",
     "searchtree.MinecraftMixin",
