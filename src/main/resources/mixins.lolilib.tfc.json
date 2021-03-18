@@ -9,16 +9,10 @@
     "TerraFirmaCraftMixin",
     "block.BlockFirePitMixin",
     "block.BlockOreTFCMixin",
-    "block.BlockPlantTFCMixin",
     "block.BlocksTFCMixin",
     "client.ClientRegisterEventsMixin",
     "client.TFCKeybindingsMixin",
-    "item.ItemIngotMixin",
-    "item.ItemRockMixin",
-    "item.ItemWoodenBucketMixin",
-    "world.ChunkGenTFCMixin",
-    "world.WorldGenLooseRocksMixin",
-    "world.WorldGenTreesMixin"
+    "world.ChunkGenTFCMixin"
   ],
   "injectors": {
     "defaultRequire": 1

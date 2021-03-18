@@ -15,11 +15,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import zone.rong.lolilib.tfc.block.BlockStick;
 
 import java.util.List;
 import java.util.Random;
@@ -28,15 +25,10 @@ import java.util.Random;
 public class TFCMain {
 
     public static final String STAGE_DRANK_WATER = "tfc:drank_water";
-    public static final AxisAlignedBB GROUNDCOVER_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
     public static final ThreadLocal<BlockPos> CURRENT_VILLAGE_CHUNK = ThreadLocal.withInitial(() -> new BlockPos(0, 0, 0));
 
     // private static final Map<Long, ItemStack> stacksToRot = new MapMaker().weakValues().makeMap();
     private static final Random treeRandom = new Random();
-
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        event.getRegistry().register(BlockStick.INSTANCE);
-    }
 
     /*
     public static void checkRot(long time) {

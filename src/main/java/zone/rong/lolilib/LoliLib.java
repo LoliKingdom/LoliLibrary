@@ -2,10 +2,12 @@ package zone.rong.lolilib;
 
 import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -13,17 +15,19 @@ import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.botania.RenderManaPearl;
 import zone.rong.lolilib.capability.world.BlockDataHolder;
-import zone.rong.lolilib.pyrotech.PyrotechMain;
-import zone.rong.lolilib.tfc.TFCMain;
 import zone.rong.lolilib.tfc.block.BlockCustomFirePit;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Mod(modid = LoliLib.MOD_ID, name = LoliLib.NAME, version = "1.0", dependencies = "after:*")
 @Mod.EventBusSubscriber
@@ -58,8 +62,32 @@ public final class LoliLib {
 
     @Mod.EventHandler
     public void start(FMLLoadCompleteEvent event) {
-        // Tests are done here
-        // Arrays.stream(BlockFirePit.FirePitAttachment.values()).forEach(System.out::println);
+        List<IGrowable> growables = new ArrayList<>();
+        List<IPlantable> plantables = new ArrayList<>();
+        ForgeRegistries.BLOCKS.getValuesCollection().forEach(b -> {
+            if (b.getRegistryName().getResourceDomain().equals("tfc")) {
+                return; // No need to log TFC blocks.
+            }
+            if (b instanceof IGrowable) {
+                growables.add((IGrowable) b);
+            }
+            if (b instanceof IPlantable) {
+                plantables.add((IPlantable) b);
+            }
+        });
+        LoliLogger.INSTANCE.info("Growables:");
+        growables.forEach(g -> {
+            Block block = (Block) g;
+            LoliLogger.INSTANCE.info("{} - {}", block.getRegistryName().getResourceDomain(), block.getRegistryName().getResourcePath());
+            block.getBlockState().getProperties().forEach(p ->  LoliLogger.INSTANCE.info("Property: {} | Allowed Values: {}", p.getName(), (Object) p.getAllowedValues().toArray()));
+        });
+        LoliLogger.INSTANCE.info("Plantables:");
+        plantables.forEach(g -> {
+            Block block = (Block) g;
+            LoliLogger.INSTANCE.info("{} - {}", block.getRegistryName().getResourceDomain(), block.getRegistryName().getResourcePath());
+            block.getBlockState().getProperties().forEach(p ->  LoliLogger.INSTANCE.info("Property: {} | Allowed Values: {}", p.getName(), (Object) p.getAllowedValues().toArray()));
+        });
+        LoliLogger.INSTANCE.info("Plantables:");
     }
 
     @SubscribeEvent
@@ -67,8 +95,6 @@ public final class LoliLib {
         event.getRegistry().register(BlockTFPortalFrame.INSTANCE);
         BlockCustomFirePit.INSTANCE.register(MOD_ID);
         event.getRegistry().register(BlockCustomFirePit.INSTANCE);
-        PyrotechMain.registerBlocks(event);
-        TFCMain.registerBlocks(event);
     }
 
     @SubscribeEvent
