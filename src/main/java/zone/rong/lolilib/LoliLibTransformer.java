@@ -22,6 +22,8 @@ public class LoliLibTransformer implements IClassTransformer {
         addTransformation("com.mushroom.midnight.common.CommonEventHandler", this::removeEventBusSubscriberAnnotations);
         addTransformation("net.minecraft.util.EnumFacing", this::fixEnumArrayDupe);
         addTransformation("net.minecraft.item.EnumDyeColor", this::fixEnumArrayDupe);
+        addTransformation("net.minecraft.client.renderer.block.model.BakedQuad", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.client.renderer.block.model.BakedQuad", false));
+        addTransformation("net.minecraft.client.renderer.block.model.BlockPart", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.client.renderer.block.model.BlockPart", false));
         addTransformation("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
         addTransformation("net.minecraft.item.crafting.FurnaceRecipes", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.item.crafting.FurnaceRecipes", false));
     }
