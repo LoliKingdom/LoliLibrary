@@ -22,18 +22,14 @@ public class LoliLibTransformer implements IClassTransformer {
         addTransformation("com.mushroom.midnight.common.CommonEventHandler", this::removeEventBusSubscriberAnnotations);
         addTransformation("net.minecraft.util.EnumFacing", this::fixEnumArrayDupe);
         addTransformation("net.minecraft.item.EnumDyeColor", this::fixEnumArrayDupe);
-        addTransformation("net.minecraft.client.renderer.block.model.BakedQuad", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.client.renderer.block.model.BakedQuad", false));
-        addTransformation("net.minecraft.client.renderer.block.model.BlockPart", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.client.renderer.block.model.BlockPart", false));
+        addTransformation("net.minecraft.client.renderer.block.model.BakedQuad", this::optimizeBakedQuad);
         addTransformation("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
         addTransformation("net.minecraft.item.crafting.FurnaceRecipes", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.item.crafting.FurnaceRecipes", false));
     }
 
     public void addTransformation(String key, Function<byte[], byte[]> value) {
-        addTransformation(key, key, value);
-    }
-
-    public void addTransformation(String obfKey, String deobfKey, Function<byte[], byte[]> value) {
-        transformations.put(isDeobf ? deobfKey : obfKey, value);
+        LoliLogger.INSTANCE.info("Adding class {} to transformation queue", key);
+        transformations.put(key, value);
     }
 
     @Override
@@ -43,6 +39,45 @@ public class LoliLibTransformer implements IClassTransformer {
             return getBytes.apply(bytes);
         }
         return bytes;
+    }
+
+    private byte[] optimizeBakedQuad(byte[] bytes) {
+        ClassReader reader = new ClassReader(bytes);
+        ClassNode node = new ClassNode();
+        reader.accept(node, 0);
+
+        final String tintIndex = isDeobf ? "tintIndex" : "field_178213_b";
+
+        // Transform tintIndex int field -> byte field
+        for (FieldNode field : node.fields) {
+            if (field.name.equals(tintIndex)) {
+                field.desc = "B";
+                break;
+            }
+        }
+
+        for (MethodNode method : node.methods) {
+            if (method.access == 0x1 && method.name.equals("<init>")) {
+                ListIterator<AbstractInsnNode> iterator = method.instructions.iterator();
+                boolean transformed = false;
+                while (iterator.hasNext() && !transformed) {
+                    AbstractInsnNode instruction = iterator.next();
+                    if (instruction.getOpcode() == Opcodes.PUTFIELD) {
+                        FieldInsnNode fieldInstruction = (FieldInsnNode) instruction;
+                        if (fieldInstruction.name.equals(tintIndex)) {
+                            method.instructions.insertBefore(instruction, new InsnNode(Opcodes.I2B));
+                            fieldInstruction.desc = "B";
+                            transformed = true;
+                        }
+                    }
+                }
+                break;
+            }
+        }
+
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+        node.accept(writer);
+        return writer.toByteArray();
     }
 
     private byte[] replaceWithExistingClass(byte[] bytes, String existingClassName, boolean alignPath) {
