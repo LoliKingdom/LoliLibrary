@@ -1,8 +1,14 @@
 package zone.rong.lolilib;
 
 import crafttweaker.mc1120.CraftTweaker;
+import it.unimi.dsi.fastutil.bytes.ByteOpenHashSet;
+import it.unimi.dsi.fastutil.bytes.ByteSet;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
+import it.unimi.dsi.fastutil.ints.IntSet;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -26,12 +32,16 @@ import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Mod(modid = LoliLib.MOD_ID, name = LoliLib.NAME, version = "1.0", dependencies = "after:*")
 @Mod.EventBusSubscriber
 public final class LoliLib {
+
+    public static final Set<Class<?>> classesThatCallBakedQuad = new ObjectOpenHashSet<>();
+    public static final ByteSet colorTintsThatBakedQuadsUses = new ByteOpenHashSet();
+    public static final IntSet uniqueVertexFormatsBakedQuadsHas = new IntOpenHashSet();
 
     public static final String MOD_ID = "lolilib";
     public static final String NAME = "Loli Library";
@@ -88,6 +98,11 @@ public final class LoliLib {
             block.getBlockState().getProperties().forEach(p ->  LoliLogger.INSTANCE.info("Property: {} | Allowed Values: {}", p.getName(), (Object) p.getAllowedValues().toArray()));
         });
         LoliLogger.INSTANCE.info("Plantables:");
+        for (Class<?> clazz : classesThatCallBakedQuad) {
+            LoliLogger.INSTANCE.info("This class: {} called new BakedQuad()", clazz);
+        }
+        LoliLogger.INSTANCE.info("Tints that BakedQuads use: {}", colorTintsThatBakedQuadsUses.toByteArray());
+        LoliLogger.INSTANCE.info("Amount of unique VertexFormats: {}", uniqueVertexFormatsBakedQuadsHas.size());
     }
 
     @SubscribeEvent

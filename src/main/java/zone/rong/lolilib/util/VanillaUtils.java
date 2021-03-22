@@ -1,45 +1,20 @@
 package zone.rong.lolilib.util;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import it.unimi.dsi.fastutil.Hash;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import zone.rong.lolilib.LoliLibConfig;
-
-import java.util.concurrent.ExecutionException;
 
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 public class VanillaUtils {
 
-    private static final Cache<String, ResourceLocation> resourceLocationCache;
-
     private static Hash.Strategy<ItemStack> stackHashStrategy;
-
-    static {
-        resourceLocationCache = CacheBuilder.newBuilder().concurrencyLevel(2).maximumSize(10000).softValues().build();
-    }
-
-    public static String retrieveCanonicalString(String s) {
-        return LoliLibConfig.INSTANCE.enableLoliStringPool ? s.intern() : StringPool.POOL.getCanonicalString(s);
-    }
-
-    public static ResourceLocation retrieveCanonicalResourceLocation(String domain, String path) {
-        try {
-            return resourceLocationCache.get(domain + ":" + path, () -> new ResourceLocation(domain, path));
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return new ResourceLocation(domain, path);
-    }
 
     public static AxisAlignedBB makeAABB(int fromX, int fromY, int fromZ, int toX, int toY, int toZ) {
         return new AxisAlignedBB(fromX / 16F, fromY / 16F, fromZ / 16F, toX / 16F, toY / 16F, toZ / 16F);

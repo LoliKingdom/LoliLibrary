@@ -44,6 +44,7 @@ configurations {
 }
 
 repositories {
+    jcenter()
     maven {
         url "https://www.cursemaven.com"
     }
@@ -65,6 +66,8 @@ repositories {
 }
 
 dependencies {
+
+    embed 'me.nallar.whocalled:WhoCalled:1.1'
 
     compile files("./libs/mixinbooter-1.0.jar")
 
@@ -102,7 +105,7 @@ dependencies {
     deobfCompile "curse.maven:the-weirding-gadget-258914:2708729"
     deobfCompile "curse.maven:yungs-better-mineshafts-forge-389665:3067998" // We'll build our own, soon.
 
-    deobfCompile "curse.maven:jeid-296289:2919737"
+    // deobfCompile "curse.maven:jeid-296289:2919737"
 
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
