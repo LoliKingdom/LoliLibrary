@@ -11,7 +11,6 @@ import net.minecraftforge.common.util.FakePlayer;
 
 import com.github.atomicblom.weirdinggadget.block.WeirdingGadgetBlock;
 import com.github.atomicblom.weirdinggadget.block.tileentity.WeirdingGadgetTileEntity;
-import net.dries007.tfc.util.Helpers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,7 +18,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(WeirdingGadgetBlock.class)
 public abstract class WeirdingGadgetBlockMixin {
 
-    @Shadow private static void activateChunkLoader(World worldIn, BlockPos pos, EntityPlayer placer) { }
+    @Shadow(remap = false) private static void activateChunkLoader(World worldIn, BlockPos pos, EntityPlayer placer) { }
 
     /**
      * @author Rongmario
@@ -32,8 +31,10 @@ public abstract class WeirdingGadgetBlockMixin {
             if (player instanceof FakePlayer) {
                 return false;
             }
-            WeirdingGadgetTileEntity tileEntity = Helpers.getTE(world, pos, WeirdingGadgetTileEntity.class);
-            if (tileEntity == null || !tileEntity.isExpired() && tileEntity.hasTicket(player)) {
+            WeirdingGadgetTileEntity tileEntity = (WeirdingGadgetTileEntity) world.getTileEntity(pos);
+            if (tileEntity == null) {
+                return false;
+            } else if (!tileEntity.isExpired() && tileEntity.hasTicket(player)) {
                 return false;
             } else {
                 activateChunkLoader(world, pos, player);

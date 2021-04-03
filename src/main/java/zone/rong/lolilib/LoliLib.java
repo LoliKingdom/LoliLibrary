@@ -8,7 +8,6 @@ import it.unimi.dsi.fastutil.ints.IntSet;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
-import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -26,7 +25,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import zone.rong.lolilib.botania.EntityManaPearl;
 import zone.rong.lolilib.botania.RenderManaPearl;
 import zone.rong.lolilib.capability.world.BlockDataHolder;
-import zone.rong.lolilib.tfc.block.BlockCustomFirePit;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
 import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
 
@@ -108,14 +106,11 @@ public final class LoliLib {
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         event.getRegistry().register(BlockTFPortalFrame.INSTANCE);
-        BlockCustomFirePit.INSTANCE.register(MOD_ID);
-        event.getRegistry().register(BlockCustomFirePit.INSTANCE);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new ItemBlock(BlockTFPortalFrame.INSTANCE).setRegistryName(MOD_ID, "tf_portal_frame").setUnlocalizedName("tf_portal_frame"));
-        event.getRegistry().register(new ItemBlock(BlockCustomFirePit.INSTANCE).setRegistryName(MOD_ID, "fire_pit").setUnlocalizedName("fire_pit"));
     }
 
     @SubscribeEvent

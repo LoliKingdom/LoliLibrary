@@ -95,7 +95,7 @@ dependencies {
     deobfCompile "curse.maven:pyrotech-306676:3121005"
     deobfCompile "curse.maven:the-aurorian-352137:3074228"
     deobfCompile "curse.maven:the-midnight-304881:2727758"
-    deobfCompile "curse.maven:tfcraft-302973:3136903"
+    // deobfCompile "curse.maven:tfcraft-302973:3136903" Work on TFC in the fork
     deobfCompile 'curse.maven:thaumcraft-223628:2629023'
     deobfCompile "curse.maven:the-twilight-forest-227639:3051450"
     deobfCompile "curse.maven:ic2-classic-242942:3076007"

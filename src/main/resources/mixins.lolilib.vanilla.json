@@ -13,7 +13,6 @@
     "optimizations.EnumFacingMixin",
     "optimizations.GameDataMixin",
     "optimizations.MathHelperMixin",
-    "optimizations.StateImplementationMixin",
     "optimizations.VisGraphMixin",
     "optimizations.WorldMixin",
     "searchtree.MinecraftMixin",

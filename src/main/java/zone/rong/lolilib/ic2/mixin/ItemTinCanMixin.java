@@ -5,12 +5,6 @@ import ic2.api.classic.recipe.machine.IFoodCanEffect;
 import ic2.core.IC2;
 import ic2.core.item.misc.ItemTinCan;
 import ic2.core.platform.registry.Ic2Items;
-import net.dries007.tfc.api.capability.food.CapabilityFood;
-import net.dries007.tfc.api.capability.food.FoodHandler;
-import net.dries007.tfc.api.capability.food.IFoodStatsTFC;
-import net.dries007.tfc.api.capability.size.IItemSize;
-import net.dries007.tfc.api.capability.size.Size;
-import net.dries007.tfc.api.capability.size.Weight;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -18,23 +12,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.FoodStats;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import zone.rong.lolilib.ic2.IC2Main;
 
 @Mixin(ItemTinCan.class)
-public abstract class ItemTinCanMixin extends Item implements IItemSize {
+public abstract class ItemTinCanMixin extends Item/* implements IItemSize*/ { }
 
+    /*
     /**
      * @author Rongmario
-     */
+
     @Overwrite
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         if (this.isInCreativeTab(tab)) {
@@ -50,7 +42,7 @@ public abstract class ItemTinCanMixin extends Item implements IItemSize {
 
     /**
      * @author Rongmario
-     */
+
     @Overwrite(remap = false)
     public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
         IC2.achievements.issueStat(player, "foodcanEaten");
@@ -78,7 +70,6 @@ public abstract class ItemTinCanMixin extends Item implements IItemSize {
     private void redirectToTFCFoodStats(FoodStats foodStats, int foodLevelIn, float foodSaturationModifier, ItemStack stack, World world, EntityPlayer player) {
         ((IFoodStatsTFC) foodStats).addStats(stack);
     }
-     */
 
     @Override
     public Size getSize(ItemStack itemStack) {
@@ -96,3 +87,5 @@ public abstract class ItemTinCanMixin extends Item implements IItemSize {
     }
 
 }
+
+     */
