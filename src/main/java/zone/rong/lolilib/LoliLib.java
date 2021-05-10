@@ -30,7 +30,7 @@ public final class LoliLib {
     public static final String MOD_ID = "lolilib";
     public static final String NAME = "Loli Library";
 
-    @SidedProxy
+    @SidedProxy(modId = MOD_ID, clientSide = "zone.rong.lolilib.proxy.ClientProxy", serverSide = "zone.rong.lolilib.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
