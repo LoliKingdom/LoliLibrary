@@ -10,7 +10,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(ForgeModContainer.class)
+@Mixin(value = ForgeModContainer.class, remap = false)
 public class ForgeModContainerMixin {
 
     /**
@@ -18,7 +18,7 @@ public class ForgeModContainerMixin {
      * @reason To take out the client recipe book
      */
     @Subscribe
-    @Overwrite(remap = false)
+    @Overwrite
     public void mappingChanged(FMLModIdMappingEvent event) {
         OreDictionary.rebakeMap();
         StatList.reinit();
