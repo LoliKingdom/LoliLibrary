@@ -1,69 +1,51 @@
 package zone.rong.lolilib;
 
 import crafttweaker.mc1120.CraftTweaker;
-import it.unimi.dsi.fastutil.bytes.ByteOpenHashSet;
-import it.unimi.dsi.fastutil.bytes.ByteSet;
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import it.unimi.dsi.fastutil.ints.IntSet;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import it.unimi.dsi.fastutil.objects.ObjectSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import zone.rong.lolilib.botania.EntityManaPearl;
-import zone.rong.lolilib.botania.RenderManaPearl;
-import zone.rong.lolilib.capability.world.BlockDataHolder;
+import zone.rong.lolilib.proxy.CommonProxy;
 import zone.rong.lolilib.twilightforest.BlockTFPortalFrame;
-import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Mod(modid = LoliLib.MOD_ID, name = LoliLib.NAME, version = "1.0", dependencies = "after:*")
 @Mod.EventBusSubscriber
 public final class LoliLib {
 
-    public static final ByteSet colorTintsThatBakedQuadsUses = new ByteOpenHashSet();
-    public static final IntSet uniqueVertexFormatsBakedQuadsHas = new IntOpenHashSet();
-
-    public static final ObjectSet<Class<?>> ingredientClasses = new ObjectOpenHashSet<>();
-
     public static final String MOD_ID = "lolilib";
     public static final String NAME = "Loli Library";
 
+    @SidedProxy
+    public static CommonProxy proxy;
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        GameRegistry.registerWorldGenerator(new WorldGenOverworldStructures(), 0);
-        BlockDataHolder.init();
-        if (event.getSide().isClient()) {
-            OBJLoader.INSTANCE.addDomain(MOD_ID);
-        }
+        proxy.preInit(event);
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        if (event.getSide().isClient()) {
-            RenderingRegistry.registerEntityRenderingHandler(EntityManaPearl.class, new RenderManaPearl<>());
-        }
+        proxy.init(event);
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) throws NoSuchFieldException, IllegalAccessException {
+        proxy.postInit(event);
         Field alreadyChangedThePlayer = CraftTweaker.class.getDeclaredField("alreadyChangedThePlayer");
         alreadyChangedThePlayer.setAccessible(true);
         alreadyChangedThePlayer.setBoolean(null, true); // Changing this allows us to bypass RecipeBook build AND search tree recalculation
@@ -97,9 +79,6 @@ public final class LoliLib {
             LoliLogger.INSTANCE.info("{} - {}", block.getRegistryName().getResourceDomain(), block.getRegistryName().getResourcePath());
             block.getBlockState().getProperties().forEach(p ->  LoliLogger.INSTANCE.info("Property: {} | Allowed Values: {}", p.getName(), (Object) p.getAllowedValues().toArray()));
         });
-        LoliLogger.INSTANCE.info("Tints that BakedQuads use: {}", colorTintsThatBakedQuadsUses.toByteArray());
-        LoliLogger.INSTANCE.info("Amount of unique VertexFormats: {}", uniqueVertexFormatsBakedQuadsHas.size());
-        LoliLogger.INSTANCE.info("Ingredient classes: {}", (Object) ingredientClasses.toArray());
     }
 
     @SubscribeEvent

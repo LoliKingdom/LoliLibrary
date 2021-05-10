@@ -7,6 +7,7 @@ import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.function.Function;
@@ -20,7 +21,7 @@ public class LoliLibTransformer implements IClassTransformer {
     public LoliLibTransformer() {
         addTransformation("com.mushroom.midnight.common.CommonEventHandler", this::removeEventBusSubscriberAnnotations);
         addTransformation("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
-        addTransformation("net.minecraft.item.crafting.FurnaceRecipes", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.item.crafting.FurnaceRecipes", false));
+        // addTransformation("net.minecraft.item.crafting.FurnaceRecipes", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.item.crafting.FurnaceRecipes", false));
     }
 
     public void addTransformation(String key, Function<byte[], byte[]> value) {
@@ -35,6 +36,18 @@ public class LoliLibTransformer implements IClassTransformer {
             return getBytes.apply(bytes);
         }
         return bytes;
+    }
+
+    private byte[] implementSerializable(byte[] bytes) {
+        ClassReader reader = new ClassReader(bytes);
+        ClassNode node = new ClassNode();
+        reader.accept(node, 0);
+
+        node.interfaces.add(Type.getInternalName(Serializable.class));
+
+        ClassWriter writer = new ClassWriter(0);
+        node.accept(writer);
+        return writer.toByteArray();
     }
 
     private byte[] replaceWithExistingClass(byte[] bytes, String existingClassName, boolean alignPath) {
