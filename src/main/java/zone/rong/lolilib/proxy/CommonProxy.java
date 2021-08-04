@@ -1,5 +1,7 @@
 package zone.rong.lolilib.proxy;
 
+import com.elseytd.theaurorian.TABiomes;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -14,11 +16,10 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-
+        TABiomes.initBiomeManagerAndDictionary();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-
     }
 
 }

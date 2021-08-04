@@ -21,7 +21,6 @@ public abstract class GuiIngameForgeMixin extends GuiIngame {
     }
 
     @Shadow(remap = false) protected abstract boolean pre(RenderGameOverlayEvent.ElementType type);
-
     @Shadow(remap = false) protected abstract void post(RenderGameOverlayEvent.ElementType type);
 
     @Shadow(remap = false) public static int right_height;

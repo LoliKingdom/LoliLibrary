@@ -7,13 +7,7 @@
   "mixins": [
     "EntityLivingBaseMixin",
     "GuiIngameForgeMixin",
-    "block.BlockHopperMixin",
-    "block.TileEntityFurnaceMixin",
-    "optimizations.EnumFacingMixin",
-    "optimizations.GameDataMixin",
-    "optimizations.WorldMixin",
-    "searchtree.MinecraftMixin",
-    "searchtree.RecipeBookMixin"
+    "block.BlockHopperMixin"
   ],
   "injectors": {
     "defaultRequire": 1

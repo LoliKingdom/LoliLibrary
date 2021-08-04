@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
@@ -27,17 +26,9 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.function.IntSupplier;
-
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = LoliLib.MOD_ID, value = Side.CLIENT)
 public class LoliLibClientEvents {
-
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public static void registerColorHandlerItems(ColorHandlerEvent.Item event) {
-        // TODO: event.getItemColors().registerItemColorHandler((stack, tintIndex) -> ConfigTFC.Client.DISPLAY.rottenFoodOverlayColor, RottenFoodItem.INSTANCE);
-    }
 
     /**
      * For the following mods:

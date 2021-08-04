@@ -20,7 +20,7 @@ public class LoliLibTransformer implements IClassTransformer {
 
     public LoliLibTransformer() {
         addTransformation("com.mushroom.midnight.common.CommonEventHandler", this::removeEventBusSubscriberAnnotations);
-        addTransformation("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
+        // addTransformation("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
         // addTransformation("net.minecraft.item.crafting.FurnaceRecipes", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.item.crafting.FurnaceRecipes", false));
     }
 
