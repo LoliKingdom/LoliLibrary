@@ -63,6 +63,9 @@ repositories {
     maven {
         url = "http://maven.ic2.player.to"
     }
+    maven {
+        url = "http://chickenbones.net/maven/"
+    }
 }
 
 dependencies {
@@ -70,22 +73,29 @@ dependencies {
     embed 'me.nallar.whocalled:WhoCalled:1.1'
 
     compile files("./libs/mixinbooter-1.0.jar")
-
     compile "curse.maven:rustic-256141:3107975"
-    compile "curse.maven:bookshelf-228525:2836963"
-    compile "curse.maven:game-stages-268655:2951844"
+    // compile "curse.maven:bookshelf-228525:2836963"
+    // compile "curse.maven:game-stages-268655:2951844"
+    compile "curse.maven:redstone-flux-270789:2920436"
+    compile "curse.maven:cofh-core-69162:2920433"
+    compile "curse.maven:redstone-repository-revolved-300750:2695517"
+    compile "curse.maven:cofh-world-271384:2920434"
+    compile "curse.maven:thermal-foundation-222880:2926428"
+    compile "curse.maven:thermal-dynamics-227443:2920505"
+    compile "curse.maven:thermal-expansion-69163:2926431"
+    compile "curse.maven:redstone-arsenal-70631:2939416"
+    compile "curse.maven:mekanism-268560:2835175"
 
     deobfCompile "baubles:Baubles:1.12:1.5.2"
-
     deobfCompile "curse.maven:academycraft-236188:3005254"
     deobfCompile "curse.maven:angry-pixel-the-betweenlands-mod-243363:3099119"
     deobfCompile "curse.maven:applied-energistics-2-223794:2747063"
     deobfCompile "curse.maven:astral-sorcery-241721:3044416"
-    deobfCompile "curse.maven:botania-225643:2846950"
     deobfCompile "curse.maven:heat-and-climate-lib-296091:3229475"
     deobfCompile "curse.maven:heat-and-climate-296096:3229480"
     // deobfCompile "curse.maven:bwm-core:2624990" // setTranslationKey
-    // deobfCompile "curse.maven:bwm-suite:2965308" // setTranslationKey 
+    // deobfCompile "curse.maven:bwm-suite:2965308" // setTranslationKey
+    deobfCompile "codechicken:CodeChickenLib:1.12.2-3.2.2.+:universal"
     deobfCompile "curse.maven:cuisine-303694:2932722"
     deobfCompile "curse.maven:forestry-59751:2918418"
     deobfCompile "curse.maven:grimoire-of-gaia-228948:2891787"
@@ -93,31 +103,25 @@ dependencies {
     deobfCompile "curse.maven:athenaeum-284350:3063275"
     deobfCompile "curse.maven:dropt-284973:2957599"
     deobfCompile "curse.maven:pyrotech-306676:3121005"
-    deobfCompile "curse.maven:the-aurorian-352137:3074228"
+    deobfCompile "curse.maven:the-aurorian-352137:3331597"
     deobfCompile "curse.maven:the-midnight-304881:2727758"
-    // deobfCompile "curse.maven:tfcraft-302973:3136903" Work on TFC in the fork
     deobfCompile 'curse.maven:thaumcraft-223628:2629023'
-    deobfCompile "curse.maven:the-twilight-forest-227639:3051450"
-    deobfCompile "curse.maven:ic2-classic-242942:3076007"
     deobfCompile "curse.maven:mysterious-mountain-lib-368098:3152248"
     deobfCompile "curse.maven:sakura-333079:3152249"
     deobfCompile "curse.maven:jei-238222:3043174"
     deobfCompile "curse.maven:nuclearcraft-overhauled-336895:3072330"
     deobfCompile "curse.maven:warpdrive-233565:3069000"
-    deobfCompile "curse.maven:the-weirding-gadget-258914:2708729"
     deobfCompile "curse.maven:yungs-better-mineshafts-forge-389665:3067998" // We'll build our own, soon.
-
-    // deobfCompile "curse.maven:jeid-296289:2919737"
-
     deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
     deobfCompile ("com.enderio:EnderIO:1.12.2-+") {
         transitive = false
     }
-
     deobfCompile (group: 'CraftTweaker2', name: 'CraftTweaker2-MC1120-Main', version: "1.12-4.1.20.602") {
         exclude group: 'org.ow2.asm'
         exclude group: 'com.google.code.gson'
     }
+
+    deobfProvided "curse.maven:mekanism-268560:2835176"
 
     implementation ("org.spongepowered:mixin:0.8") {
         exclude module: "asm-commons"

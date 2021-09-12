@@ -23,6 +23,11 @@ public final class LoliLib {
     public static CommonProxy proxy;
 
     @Mod.EventHandler
+    public void construct(FMLConstructionEvent event) {
+        proxy.construct(event);
+    }
+
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
     }
@@ -33,12 +38,13 @@ public final class LoliLib {
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) throws NoSuchFieldException, IllegalAccessException {
+    public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }
 
     @Mod.EventHandler
     public void start(FMLLoadCompleteEvent event) {
+        proxy.start(event);
         List<IGrowable> growables = new ArrayList<>();
         List<IPlantable> plantables = new ArrayList<>();
         ForgeRegistries.BLOCKS.getValuesCollection().forEach(b -> {

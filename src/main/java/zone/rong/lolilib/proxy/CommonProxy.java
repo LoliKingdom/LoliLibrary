@@ -1,25 +1,28 @@
 package zone.rong.lolilib.proxy;
 
-import com.elseytd.theaurorian.TABiomes;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import zone.rong.lolilib.vanilla.world.WorldGenOverworldStructures;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.relauncher.Side;
+import zone.rong.lolilib.LoliModule;
 
 public class CommonProxy {
 
-    public void preInit(FMLPreInitializationEvent event) {
-        GameRegistry.registerWorldGenerator(new WorldGenOverworldStructures(), 0);
-        // BlockDataHolder.init();
+    public void construct(FMLConstructionEvent event) {
+        LoliModule.INSTANCES.forEach(m -> m.onFMLConstruct(event, Side.SERVER));
     }
 
+    public void preInit(FMLPreInitializationEvent event) {
+        LoliModule.INSTANCES.forEach(m -> m.onFMLPreInit(event, Side.SERVER));
+    }
     public void init(FMLInitializationEvent event) {
-        TABiomes.initBiomeManagerAndDictionary();
+        LoliModule.INSTANCES.forEach(m -> m.onFMLInit(event, Side.SERVER));
     }
 
     public void postInit(FMLPostInitializationEvent event) {
+        LoliModule.INSTANCES.forEach(m -> m.onFMLPostInit(event, Side.SERVER));
+    }
+
+    public void start(FMLLoadCompleteEvent event) {
+        LoliModule.INSTANCES.forEach(m -> m.onFMLLoadComplete(event, Side.SERVER));
     }
 
 }
