@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.ReferenceArraySet;
 import it.unimi.dsi.fastutil.objects.ReferenceSet;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.Side;
+import zone.rong.lolilib.baubles.mixin.BaublesModule;
 import zone.rong.lolilib.cofh.CoFHModule;
 import zone.rong.lolilib.theaurorian.TheAurorianModule;
 
@@ -12,12 +13,9 @@ public class LoliModule {
     public static final ReferenceSet<LoliModule> INSTANCES = new ReferenceArraySet<>();
 
     static void initModules() {
+        INSTANCES.add(new BaublesModule());
         INSTANCES.add(new CoFHModule());
         INSTANCES.add(new TheAurorianModule());
-    }
-
-    public LoliModule() {
-        INSTANCES.add(this);
     }
 
     public void onCoreModInit(Side side) { }

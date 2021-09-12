@@ -1,13 +1,16 @@
 package zone.rong.lolilib.baubles.mixin.client;
 
 import baubles.client.ClientProxy;
+import baubles.client.gui.GuiEvents;
 import baubles.client.gui.GuiPlayerExpanded;
 import baubles.common.CommonProxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import zone.rong.lolilib.baubles.BaublesClientEventHandler;
 
 import static baubles.client.ClientProxy.KEY_BAUBLES;
 
@@ -22,6 +25,8 @@ public abstract class ClientProxyMixin extends CommonProxy {
     public void registerEventHandlers() {
         super.registerEventHandlers();
         ClientRegistry.registerKeyBinding(KEY_BAUBLES);
+        MinecraftForge.EVENT_BUS.register(new BaublesClientEventHandler());
+        MinecraftForge.EVENT_BUS.register(new GuiEvents());
     }
 
     /**
