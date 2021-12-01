@@ -19,14 +19,6 @@ public class TooltipHandlerMixin {
      */
     @SideOnly(Side.CLIENT)
     @Overwrite(remap = false)
-    public void onTooltipEvent_first(@Nonnull ItemTooltipEvent event) { } // Take off @SubscribeEvent
-
-    /**
-     * @author Rongmario
-     * @reason Why the fuck?
-     */
-    @SideOnly(Side.CLIENT)
-    @Overwrite(remap = false)
     public void onTooltipEvent_last(@Nonnull ItemTooltipEvent event) { } // Take off @SubscribeEvent
 
 }

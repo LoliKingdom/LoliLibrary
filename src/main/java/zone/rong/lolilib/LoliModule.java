@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.objects.ReferenceArraySet;
 import it.unimi.dsi.fastutil.objects.ReferenceSet;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.Side;
-import zone.rong.lolilib.baubles.mixin.BaublesModule;
+import zone.rong.lolilib.baubles.BaublesModule;
 import zone.rong.lolilib.cofh.CoFHModule;
 import zone.rong.lolilib.theaurorian.TheAurorianModule;
 

@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import zone.rong.lolilib.LoliLogger;
 import zone.rong.lolilib.LoliModule;
+import zone.rong.lolilib.util.LoliTimer;
 
 public class CoFHModule extends LoliModule {
 
@@ -32,6 +33,7 @@ public class CoFHModule extends LoliModule {
     @Override
     public void onFMLLoadComplete(FMLLoadCompleteEvent event, Side side) {
         // Disallows ores smelting and doubling+ in the magma crucible
+        LoliTimer timer = LoliTimer.createAndStart(logger -> logger.info("Removing ore melting recipes from Thermal Expansion's Magma Crucible."));
         int oreRecipesRemoved = 0;
         for (CrucibleManager.CrucibleRecipe recipe : CrucibleManager.getRecipeList()) {
             ItemStack input = recipe.getInput();
@@ -44,6 +46,7 @@ public class CoFHModule extends LoliModule {
                 }
             }
         }
-        LoliLogger.INSTANCE.info("Removed {} of Magma Crucible's ore melting recipes", oreRecipesRemoved);
+        int finalOreRecipesRemoved = oreRecipesRemoved;
+        timer.stop((logger, elapsedTime) -> logger.info("Removed {} of Magma Crucible's ore melting recipes", finalOreRecipesRemoved));
     }
 }
