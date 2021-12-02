@@ -14,14 +14,12 @@ import java.util.function.Function;
 
 public class LoliLibTransformer implements IClassTransformer {
 
-    final Map<String, Function<byte[], byte[]>> transformations = new Object2ObjectOpenHashMap<>();
+    Map<String, Function<byte[], byte[]>> transformations = new Object2ObjectOpenHashMap<>();
 
     private final boolean isDeobf = (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
     public LoliLibTransformer() {
         addTransformation("com.mushroom.midnight.common.CommonEventHandler", this::removeEventBusSubscriberAnnotations);
-        // addTransformation("net.minecraft.util.ObjectIntIdentityMap", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.util.ObjectIntIdentityMap", false));
-        // addTransformation("net.minecraft.item.crafting.FurnaceRecipes", bytes -> this.replaceWithExistingClass(bytes, "net.minecraft.item.crafting.FurnaceRecipes", false));
     }
 
     public void addTransformation(String key, Function<byte[], byte[]> value) {
